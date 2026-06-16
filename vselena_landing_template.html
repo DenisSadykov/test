@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вселена Мастер — Сценарий счастливой женщины</title>
+<!-- Style: Editorial / Luxury Premium + Motion | Palette: Warm cream + bronze | Fonts: Cormorant Garamond + Manrope -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #211c17;
+    --ink-soft: #4a423a;
+    --canvas: #e7ddd1;
+    --warm-white: #f1ebe2;
+    --paper: #f7f3ec;
+    --pure: #ffffff;
+    --line: #d2c6b6;
+    --line-soft: #e0d6c8;
+    --stone: #8a7f72;
+    --bronze: #9c6b3f;
+    --bronze-dark: #7d5530;
+    --bronze-light: #b8895c;
+    --bronze-tint: #f0e6d9;
+
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Manrope', sans-serif;
+
+    --max: 1240px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+    --r-sm: 14px;
+    --r-md: 22px;
+    --r-lg: 32px;
+    --r-pill: 999px;
+    --shadow-sm: 0 4px 16px -8px rgba(33,28,23,0.18);
+    --shadow-md: 0 18px 40px -22px rgba(33,28,23,0.28);
+    --shadow-lg: 0 36px 80px -40px rgba(33,28,23,0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--canvas);
+    line-height: 1.65;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  /* subtle paper grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--bronze); color: var(--pure); }
+
+  /* ===== Scroll progress ===== */
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--bronze-light), var(--bronze-dark));
+    z-index: 9998;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--bronze);
+  }
+  .num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--bronze);
+  }
+
+  /* ===== Word reveal ===== */
+  .reveal-words .word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
+  .reveal-words .word > span {
+    display: inline-block;
+    transform: translateY(105%);
+    transition: transform 0.9s var(--ease);
+  }
+  .reveal-words.in .word > span { transform: translateY(0); }
+
+  /* ===== Header ===== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 26px;
+    max-width: calc(var(--max) - 80px);
+    margin: 16px auto 0;
+    border-radius: var(--r-pill);
+    transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease), margin 0.4s var(--ease);
+    border: 1px solid transparent;
+  }
+  header.scrolled .header-inner {
+    background: rgba(247, 243, 236, 0.7);
+    backdrop-filter: blur(18px) saturate(1.4);
+    border: 1px solid rgba(210,198,182,0.6);
+    box-shadow: var(--shadow-sm);
+    margin-top: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .logo span { color: var(--bronze); }
+  .nav-links { display: flex; gap: 40px; font-size: 14px; font-weight: 500; }
+  .nav-links a { position: relative; color: var(--ink-soft); transition: color 0.25s var(--ease); }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: -5px;
+    width: 0; height: 1px; background: var(--bronze); transition: width 0.3s var(--ease);
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-body); font-weight: 600; font-size: 14px;
+    transition: all 0.3s var(--ease); border: 1px solid transparent;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary { background: var(--bronze); color: var(--pure); padding: 15px 32px; border-radius: var(--r-pill); }
+  .btn-primary::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--bronze-dark);
+    transform: translateY(101%); transition: transform 0.4s var(--ease); z-index: 0;
+  }
+  .btn-primary:hover::before { transform: translateY(0); }
+  .btn-primary span, .btn-primary { z-index: 1; }
+  .btn-primary > * { position: relative; z-index: 1; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -14px rgba(124,85,48,0.55); }
+  .btn-ghost { background: transparent; color: var(--ink); padding: 15px 32px; border: 1px solid var(--line); border-radius: var(--r-pill); }
+  .btn-ghost:hover { border-color: var(--ink); background: var(--warm-white); }
+  .btn-link { color: var(--ink); padding: 14px 0; border-bottom: 1px solid var(--ink); }
+  .btn-link:hover { color: var(--bronze); border-color: var(--bronze); gap: 16px; }
+  .btn .arrow { transition: transform 0.3s var(--ease); }
+  .btn:hover .arrow { transform: translateX(4px); }
+  .header-cta { padding: 12px 26px; }
+
+  /* ===== Burger ===== */
+  .burger {
+    display: none;
+    width: 44px; height: 44px;
+    border: 1px solid var(--line);
+    background: rgba(247,243,236,0.6);
+    border-radius: var(--r-pill);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .burger span {
+    position: absolute; left: 12px; right: 12px; height: 1.5px;
+    background: var(--ink); border-radius: 2px;
+    transition: transform 0.35s var(--ease), opacity 0.25s var(--ease);
+  }
+  .burger span:nth-child(1) { top: 16px; }
+  .burger span:nth-child(2) { top: 21px; }
+  .burger span:nth-child(3) { top: 26px; }
+  body.menu-open .burger span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+  body.menu-open .burger span:nth-child(2) { opacity: 0; }
+  body.menu-open .burger span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+  /* ===== Mobile menu ===== */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: var(--canvas);
+    padding: 110px 30px 40px;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-100%);
+    transition: transform 0.5s var(--ease);
+    pointer-events: none;
+  }
+  body.menu-open { overflow: hidden; }
+  body.menu-open .mobile-menu { transform: translateY(0); pointer-events: auto; }
+  .mobile-menu a.m-link {
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--ink);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line-soft);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  }
+  .mobile-menu a.m-link em { font-style: italic; color: var(--bronze); }
+  body.menu-open .mobile-menu a.m-link { opacity: 1; transform: none; }
+  body.menu-open .mobile-menu a.m-link:nth-child(1) { transition-delay: 0.12s; }
+  body.menu-open .mobile-menu a.m-link:nth-child(2) { transition-delay: 0.18s; }
+  body.menu-open .mobile-menu a.m-link:nth-child(3) { transition-delay: 0.24s; }
+  body.menu-open .mobile-menu a.m-link:nth-child(4) { transition-delay: 0.30s; }
+  body.menu-open .mobile-menu a.m-link:nth-child(5) { transition-delay: 0.36s; }
+  .mobile-menu .m-cta { margin-top: auto; }
+  .mobile-menu .m-cta .btn { width: 100%; justify-content: center; padding: 17px; }
+  .mobile-menu .m-contacts { margin-top: 22px; display: flex; gap: 22px; font-size: 14px; color: var(--stone); }
+  .mobile-menu .m-contacts a { color: var(--bronze); }
+
+  /* ===== Sticky mobile CTA ===== */
+  .mobile-bar {
+    display: none;
+    position: fixed;
+    left: 14px; right: 14px; bottom: 14px;
+    z-index: 120;
+    background: rgba(247,243,236,0.82);
+    backdrop-filter: blur(16px) saturate(1.4);
+    border: 1px solid rgba(210,198,182,0.7);
+    border-radius: var(--r-pill);
+    box-shadow: var(--shadow-md);
+    padding: 10px 10px 10px 22px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    transform: translateY(140%);
+    transition: transform 0.5s var(--ease);
+  }
+  .mobile-bar.show { transform: translateY(0); }
+  .mobile-bar .mb-price { line-height: 1.2; }
+  .mobile-bar .mb-price strong { font-family: var(--font-display); font-size: 19px; font-weight: 600; display: block; }
+  .mobile-bar .mb-price small { font-size: 11px; color: var(--stone); }
+  .mobile-bar .btn { padding: 13px 24px; white-space: nowrap; }
+
+  /* ===== Hero ===== */
+  .hero { padding: 180px 0 110px; position: relative; overflow: hidden; }
+  .hero-aura {
+    position: absolute;
+    width: 720px; height: 720px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(156,107,63,0.18), transparent 65%);
+    top: -120px; right: -160px;
+    z-index: 0; pointer-events: none;
+    filter: blur(10px);
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px; align-items: center; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--bronze-tint); color: var(--bronze-dark);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 9px 18px; border-radius: 999px; margin-bottom: 34px;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--bronze); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{ box-shadow: 0 0 0 0 rgba(156,107,63,0.5);} 50%{ box-shadow: 0 0 0 6px rgba(156,107,63,0);} }
+  .hero h1 { font-size: clamp(48px, 6.4vw, 86px); margin-bottom: 30px; }
+  .hero h1 em { font-style: italic; font-weight: 400; color: var(--bronze); }
+  .hero .lead { font-size: 19px; color: var(--ink-soft); max-width: 460px; margin-bottom: 44px; }
+  .hero-actions { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .hero-stats { display: flex; gap: 48px; margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line-soft); }
+  .stat .figure { font-family: var(--font-display); font-size: 44px; font-weight: 600; line-height: 1; margin-bottom: 6px; }
+  .stat .label { font-size: 13px; color: var(--stone); }
+
+  .hero-media { position: relative; }
+  .hero-visual {
+    position: relative; aspect-ratio: 4/5; border-radius: var(--r-lg); overflow: hidden;
+    background: linear-gradient(160deg, rgba(156,107,63,0.12), rgba(33,28,23,0.18)), var(--warm-white);
+    border: 1px solid var(--line-soft); will-change: transform; box-shadow: var(--shadow-md);
+  }
+  .hero-visual::after {
+    content: 'портрет'; position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-style: italic; font-size: 20px; color: var(--stone);
+  }
+  .hero-visual .shine {
+    position: absolute; top: 0; left: -60%; width: 50%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.35), transparent);
+    transform: skewX(-18deg); animation: shine 5.5s var(--ease) infinite; z-index: 2;
+  }
+  @keyframes shine { 0%{left:-60%;} 60%,100%{left:140%;} }
+  .hero-visual .signature {
+    position: absolute; left: 24px; bottom: 22px; z-index: 3;
+    font-family: var(--font-display); font-style: italic; font-size: 26px; color: var(--pure);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .hero-float {
+    position: absolute; right: -28px; top: 40px; background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px) saturate(1.3);
+    border: 1px solid rgba(255,255,255,0.6); border-radius: var(--r-md); padding: 18px 22px;
+    box-shadow: var(--shadow-md); z-index: 4; will-change: transform;
+  }
+  .hero-float .stars { color: var(--bronze); font-size: 14px; letter-spacing: 2px; }
+  .hero-float .txt { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+
+  .scroll-hint {
+    position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone);
+  }
+  .scroll-hint .line { width: 1px; height: 40px; background: var(--line); position: relative; overflow: hidden; }
+  .scroll-hint .line::after {
+    content: ''; position: absolute; top: -40px; left: 0; width: 1px; height: 40px;
+    background: var(--bronze); animation: drop 2s infinite;
+  }
+  @keyframes drop { 0%{top:-40px;} 100%{top:40px;} }
+
+  /* ===== Marquee ===== */
+  .marquee {
+    border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+    background: var(--warm-white); overflow: hidden; padding: 26px 0;
+  }
+  .marquee-track { display: flex; gap: 60px; width: max-content; animation: scroll-x 28s linear infinite; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-item { font-family: var(--font-display); font-size: 26px; font-style: italic; color: var(--ink-soft); display: flex; align-items: center; gap: 60px; white-space: nowrap; }
+  .marquee-item::after { content: '✦'; color: var(--bronze); font-style: normal; font-size: 14px; }
+  @keyframes scroll-x { to { transform: translateX(-50%); } }
+
+  /* ===== Section base ===== */
+  section { padding: 130px 0; position: relative; }
+  .section-alt { background: var(--warm-white); }
+  .section-paper { background: var(--paper); }
+  .section-head { max-width: 660px; margin-bottom: 80px; }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .section-head .eyebrow { display: block; margin-bottom: 20px; }
+  .section-head h2 { font-size: clamp(36px, 4.6vw, 60px); }
+  .section-head h2 em { font-style: italic; color: var(--bronze); font-weight: 400; }
+  .section-head p { font-size: 18px; color: var(--ink-soft); margin-top: 22px; }
+
+  /* ===== Program ===== */
+  .program-list { border-top: 1px solid var(--line); }
+  .program-item {
+    padding: 38px 28px; border-bottom: 1px solid var(--line);
+    display: grid; grid-template-columns: 60px 1fr auto; gap: 32px; align-items: center;
+    position: relative; transition: background 0.4s var(--ease), border-radius 0.4s var(--ease), box-shadow 0.4s var(--ease); overflow: hidden;
+  }
+  .program-item .bg-num {
+    position: absolute; right: 30px; top: 50%; transform: translateY(-50%);
+    font-family: var(--font-display); font-size: 120px; font-weight: 600; color: var(--bronze);
+    opacity: 0; transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); pointer-events: none;
+  }
+  .program-item:hover { background: var(--pure); border-radius: var(--r-md); box-shadow: var(--shadow-sm); border-bottom-color: transparent; }
+  .program-item:hover .bg-num { opacity: 0.08; transform: translateY(-50%) translateX(-10px); }
+  .program-item .num { padding-top: 0; }
+  .program-item h3 { font-family: var(--font-display); font-size: 30px; font-weight: 600; line-height: 1.15; margin-bottom: 8px; }
+  .program-item p { color: var(--ink-soft); font-size: 15.5px; max-width: 520px; }
+  .program-item .plus { font-size: 22px; color: var(--bronze); transition: transform 0.4s var(--ease); }
+  .program-item:hover .plus { transform: rotate(90deg); }
+
+  /* ===== Author (sticky pin) ===== */
+  .author-section { background: var(--warm-white); }
+  .author { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 70px; align-items: center; }
+  .author-visual-wrap { position: sticky; top: 120px; }
+  .author-visual {
+    aspect-ratio: 3/4; border-radius: var(--r-lg); border: 1px solid var(--line-soft); position: relative; overflow: hidden;
+    background: linear-gradient(160deg, rgba(156,107,63,0.14), rgba(33,28,23,0.2)), var(--canvas);
+    box-shadow: var(--shadow-md);
+  }
+  .author-visual::after {
+    content: 'фото автора'; position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-style: italic; color: var(--stone); font-size: 18px;
+  }
+  .author blockquote { font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 46px); line-height: 1.25; font-weight: 500; margin-bottom: 32px; }
+  .author blockquote em { font-style: italic; color: var(--bronze); }
+  .author .sign-name { font-weight: 700; font-size: 15px; }
+  .author .sign-role { color: var(--stone); font-size: 14px; }
+
+  /* ===== Pricing ===== */
+  .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 880px; margin: 0 auto; }
+  .price-card {
+    background: var(--pure); border: 1px solid var(--line-soft); border-radius: var(--r-lg); padding: 48px 40px;
+    position: relative; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .price-card .spot {
+    position: absolute; width: 260px; height: 260px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(156,107,63,0.16), transparent 70%);
+    pointer-events: none; opacity: 0; transition: opacity 0.4s; transform: translate(-50%,-50%);
+  }
+  .price-card:hover .spot { opacity: 1; }
+  .price-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(33,28,23,0.25); }
+  .price-card.featured { border: 1px solid var(--bronze); box-shadow: 0 30px 60px -34px rgba(156,107,63,0.5); }
+  .price-card .tag {
+    position: absolute; top: -12px; left: 40px; background: var(--bronze); color: var(--pure);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 999px; z-index: 2;
+  }
+  .price-card h3 { font-family: var(--font-display); font-size: 26px; font-weight: 600; margin-bottom: 6px; position: relative; }
+  .price-card .sub { font-size: 14px; color: var(--stone); margin-bottom: 28px; position: relative; }
+  .price-card .price { font-family: var(--font-display); font-size: 56px; font-weight: 600; line-height: 1; margin-bottom: 4px; position: relative; }
+  .price-card .price small { font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--stone); }
+  .price-card .old { font-size: 16px; color: var(--stone); text-decoration: line-through; margin-bottom: 30px; position: relative; }
+  .price-card ul { list-style: none; margin: 30px 0 36px; position: relative; }
+  .price-card ul li { padding: 12px 0; border-top: 1px solid var(--line-soft); font-size: 15px; color: var(--ink-soft); display: flex; gap: 12px; }
+  .price-card ul li .check { color: var(--bronze); font-weight: 700; flex-shrink: 0; }
+  .price-card .btn { width: 100%; justify-content: center; position: relative; }
+
+  /* ===== Testimonials ===== */
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .t-card {
+    background: var(--pure); border: 1px solid var(--line-soft); border-radius: var(--r-md); padding: 36px 32px;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); position: relative; overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .t-card .spot {
+    position: absolute; width: 240px; height: 240px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(156,107,63,0.14), transparent 70%);
+    pointer-events: none; opacity: 0; transition: opacity 0.4s; transform: translate(-50%,-50%);
+  }
+  .t-card:hover .spot { opacity: 1; }
+  .t-card:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -28px rgba(33,28,23,0.22); }
+  .t-card .stars { color: var(--bronze); letter-spacing: 2px; font-size: 14px; margin-bottom: 18px; position: relative; }
+  .t-card .quote { font-family: var(--font-display); font-size: 21px; line-height: 1.45; margin-bottom: 26px; font-weight: 500; position: relative; }
+  .t-author { display: flex; align-items: center; gap: 14px; position: relative; }
+  .t-author .avatar {
+    width: 46px; height: 46px; border-radius: 50%; background: var(--bronze-tint); color: var(--bronze-dark);
+    display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 19px;
+  }
+  .t-author .name { font-weight: 700; font-size: 14px; }
+  .t-author .role { font-size: 13px; color: var(--stone); }
+
+  /* ===== FAQ ===== */
+  .faq-wrap { max-width: 820px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-q {
+    width: 100%; background: none; border: none; cursor: pointer; text-align: left;
+    padding: 30px 0; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    font-family: var(--font-display); font-size: 23px; font-weight: 600; color: var(--ink);
+  }
+  .faq-q .icon {
+    flex-shrink: 0; width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--bronze);
+    transition: all 0.3s var(--ease);
+  }
+  .faq-item.open .faq-q .icon { transform: rotate(45deg); background: var(--bronze); color: var(--pure); border-color: var(--bronze); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.45s var(--ease), padding 0.45s var(--ease); }
+  .faq-a p { color: var(--ink-soft); font-size: 16px; padding-bottom: 4px; }
+  .faq-item.open .faq-a { max-height: 240px; padding-bottom: 30px; }
+
+  /* ===== Final CTA ===== */
+  .cta { background: var(--ink); color: var(--paper); text-align: center; padding: 150px 0; position: relative; overflow: hidden; }
+  .cta-aura {
+    position: absolute; width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(156,107,63,0.4), transparent 68%);
+    top: -220px; left: 50%; transform: translateX(-50%); pointer-events: none; will-change: transform;
+  }
+  .cta .eyebrow { color: var(--bronze-light); }
+  .cta h2 { font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 72px); font-weight: 500; line-height: 1.05; margin: 22px 0 24px; position: relative; }
+  .cta h2 em { font-style: italic; color: var(--bronze-light); }
+  .cta p { color: #c4b9aa; font-size: 18px; max-width: 520px; margin: 0 auto 44px; position: relative; }
+  .cta .btn-primary { position: relative; padding: 18px 44px; font-size: 15px; }
+  .cta .note { margin-top: 22px; font-size: 13px; color: #8a7f72; position: relative; }
+
+  /* ===== Footer ===== */
+  footer { background: var(--canvas); border-top: 1px solid var(--line); padding: 64px 0 36px; }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; padding-bottom: 44px; border-bottom: 1px solid var(--line-soft); }
+  .footer-brand .logo { margin-bottom: 14px; }
+  .footer-brand p { color: var(--stone); font-size: 14px; max-width: 280px; }
+  .footer-cols { display: flex; gap: 70px; flex-wrap: wrap; }
+  .footer-col h4 { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; }
+  .footer-col a { display: block; color: var(--ink-soft); font-size: 14px; padding: 5px 0; transition: color 0.2s var(--ease); }
+  .footer-col a:hover { color: var(--bronze); }
+  .footer-bottom { padding-top: 28px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--stone); font-size: 13px; }
+
+  /* ===== Reveal ===== */
+  .reveal { opacity: 0; transform: translateY(34px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal[data-delay="1"] { transition-delay: 0.1s; }
+  .reveal[data-delay="2"] { transition-delay: 0.2s; }
+  .reveal[data-delay="3"] { transition-delay: 0.3s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    .reveal-words .word > span { transform: none; }
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+    .hero-visual { max-width: 440px; }
+    .author { grid-template-columns: 1fr; gap: 40px; }
+    .author-visual-wrap { position: static; }
+    .author-visual { max-width: 360px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .container, .header-inner { padding-left: 22px; padding-right: 22px; }
+    .nav-links { display: none; }
+    .header-cta { display: none; }
+    .burger { display: block; }
+    .mobile-bar { display: flex; }
+    .header-inner { margin-top: 10px; }
+    section { padding: 90px 0; }
+    .hero { padding: 140px 0 80px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 28px; flex-wrap: wrap; }
+    .hero-float { right: 12px; }
+    .program-item { grid-template-columns: 40px 1fr auto; gap: 16px; padding: 28px 8px; }
+    .program-item .bg-num { display: none; }
+    .scroll-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="progress" id="progress"></div>
+
+  <header id="header">
+    <div class="header-inner">
+      <div class="logo" data-cursor>Все<span>лена</span></div>
+      <nav class="nav-links">
+        <a href="#program" data-cursor>Программа</a>
+        <a href="#author" data-cursor>Об авторе</a>
+        <a href="#pricing" data-cursor>Тарифы</a>
+        <a href="#reviews" data-cursor>Отзывы</a>
+        <a href="#faq" data-cursor>Вопросы</a>
+      </nav>
+      <a href="#pricing" class="btn btn-primary header-cta" data-cursor data-magnetic><span>Записаться</span></a>
+      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#program" class="m-link">Программа</a>
+    <a href="#author" class="m-link">Об <em>авторе</em></a>
+    <a href="#pricing" class="m-link">Тарифы</a>
+    <a href="#reviews" class="m-link">Отзывы</a>
+    <a href="#faq" class="m-link">Вопросы</a>
+    <div class="m-cta">
+      <a href="#pricing" class="btn btn-primary"><span>Записаться со скидкой</span></a>
+      <div class="m-contacts"><a href="#">Telegram</a><a href="#">Instagram</a><a href="#">Написать</a></div>
+    </div>
+  </nav>
+
+  <!-- STICKY MOBILE CTA -->
+  <div class="mobile-bar" id="mobileBar">
+    <div class="mb-price"><strong>5 831 ₽<small> / мес</small></strong><small>рассрочка · −30%</small></div>
+    <a href="#pricing" class="btn btn-primary"><span>Записаться</span></a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-aura" data-parallax="0.18"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="hero-badge reveal"><span class="dot"></span> Акция −30% · до 18 июня</span>
+          <h1 class="display reveal-words">Сценарий <em>счастливой</em> женщины</h1>
+          <p class="lead reveal" data-delay="2">Авторская программа Вселены Мастер — спокойный, осознанный путь к гармонии, внутренней опоре и жизни, которая нравится. Доступна оплата частями.</p>
+          <div class="hero-actions reveal" data-delay="3">
+            <a href="#pricing" class="btn btn-primary" data-cursor data-magnetic><span>Начать со скидкой</span> <span class="arrow">→</span></a>
+            <a href="#program" class="btn btn-link" data-cursor>Что внутри программы</a>
+          </div>
+          <div class="hero-stats reveal" data-delay="3">
+            <div class="stat"><div class="figure" data-count="5000" data-suffix="+">0</div><div class="label">участниц прошли курс</div></div>
+            <div class="stat"><div class="figure" data-count="4.9" data-decimals="1">0</div><div class="label">средняя оценка</div></div>
+            <div class="stat"><div class="figure">∞</div><div class="label">доступ навсегда</div></div>
+          </div>
+        </div>
+        <div class="hero-media reveal" data-delay="2">
+          <div class="hero-visual" data-parallax="-0.06" data-tilt>
+            <div class="shine"></div>
+            <div class="signature">Вселена Мастер</div>
+          </div>
+          <div class="hero-float" data-parallax="0.12">
+            <div class="stars">★★★★★</div>
+            <div class="txt">«Программа изменила мою жизнь»</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint"><span>скролл</span><span class="line"></span></div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="marquee-item">Осознанность<span></span>Отношения<span></span>Финансы<span></span>Внутренняя опора<span></span>Счастье<span></span></div>
+      <div class="marquee-item">Осознанность<span></span>Отношения<span></span>Финансы<span></span>Внутренняя опора<span></span>Счастье<span></span></div>
+    </div>
+  </div>
+
+  <!-- PROGRAM -->
+  <section id="program">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">О программе</span>
+        <h2 class="display reveal-words">Путь, выстроенный <em>шаг за шагом</em></h2>
+        <p>Никакой воды и абстрактных теорий — только практические инструменты, которые остаются с вами навсегда.</p>
+      </div>
+      <div class="program-list">
+        <div class="program-item reveal" data-cursor>
+          <span class="num">01</span>
+          <div><h3>Развитие осознанности</h3><p>Учитесь слышать себя, понимать свои желания и принимать решения из состояния спокойствия, а не тревоги.</p></div>
+          <span class="plus">+</span>
+          <span class="bg-num">01</span>
+        </div>
+        <div class="program-item reveal" data-cursor>
+          <span class="num">02</span>
+          <div><h3>Гармония в отношениях</h3><p>Выстраивайте здоровые границы и тёплую связь с близкими — без вины и самопожертвования.</p></div>
+          <span class="plus">+</span>
+          <span class="bg-num">02</span>
+        </div>
+        <div class="program-item reveal" data-cursor>
+          <span class="num">03</span>
+          <div><h3>Управление финансами</h3><p>Меняйте отношение к деньгам и формируйте устойчивое изобилие как естественную часть жизни.</p></div>
+          <span class="plus">+</span>
+          <span class="bg-num">03</span>
+        </div>
+        <div class="program-item reveal" data-cursor>
+          <span class="num">04</span>
+          <div><h3>Поиск своего счастья</h3><p>Собираете собственный сценарий счастливой жизни — тот, что подходит именно вам.</p></div>
+          <span class="plus">+</span>
+          <span class="bg-num">04</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTHOR -->
+  <section id="author" class="author-section">
+    <div class="container">
+      <div class="author">
+        <div class="author-visual-wrap reveal">
+          <div class="author-visual" data-tilt></div>
+        </div>
+        <div class="reveal" data-delay="1">
+          <span class="eyebrow" style="display:block; margin-bottom:24px;">Об авторе</span>
+          <blockquote class="display">«Я создала это пространство, чтобы каждая женщина смогла обрести <em>понимание себя</em> и внести в свою жизнь больше гармонии.»</blockquote>
+          <div class="sign-name">Вселена Мастер</div>
+          <div class="sign-role">Автор программы, наставник по личностному росту</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="section-paper">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Тарифы</span>
+        <h2 class="display reveal-words">Выберите <em>свой вариант</em></h2>
+        <p>Начало обучения — с 1 числа следующего месяца после оплаты.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card reveal" data-cursor data-spot>
+          <div class="spot"></div>
+          <h3>Полная оплата</h3>
+          <div class="sub">Сценарий счастливой женщины</div>
+          <div class="price">69 974 <small>₽</small></div>
+          <div class="old">99 962 ₽</div>
+          <ul>
+            <li><span class="check">✓</span> Полный доступ ко всем урокам</li>
+            <li><span class="check">✓</span> Все практики и материалы</li>
+            <li><span class="check">✓</span> Доступ навсегда</li>
+            <li><span class="check">✓</span> Доступ в сообщество</li>
+          </ul>
+          <a href="#" class="btn btn-ghost" data-cursor>Оформить</a>
+        </div>
+        <div class="price-card featured reveal" data-delay="1" data-cursor data-spot>
+          <div class="spot"></div>
+          <span class="tag">Удобно</span>
+          <h3>Рассрочка 12 месяцев</h3>
+          <div class="sub">Первый платёж — через 1 месяц</div>
+          <div class="price">5 831 <small>₽ / мес</small></div>
+          <div class="old">69 974 ₽ единовременно</div>
+          <ul>
+            <li><span class="check">✓</span> Всё из тарифа «Полная оплата»</li>
+            <li><span class="check">✓</span> Первый платёж через 1 месяц</li>
+            <li><span class="check">✓</span> Без переплат и процентов</li>
+            <li><span class="check">✓</span> Заявка за 1–2 минуты</li>
+          </ul>
+          <a href="#" class="btn btn-primary" data-cursor data-magnetic><span>Оформить рассрочку</span> <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Отзывы</span>
+        <h2 class="display reveal-words">Истории <em>участниц</em></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="t-card reveal" data-cursor data-spot>
+          <div class="spot"></div>
+          <div class="stars">★★★★★</div>
+          <div class="quote">«Программа помогла мне разобраться в себе и наконец двигаться вперёд без постоянного чувства вины.»</div>
+          <div class="t-author"><div class="avatar">А</div><div><div class="name">Анна, 34</div><div class="role">Участница курса</div></div></div>
+        </div>
+        <div class="t-card reveal" data-delay="1" data-cursor data-spot>
+          <div class="spot"></div>
+          <div class="stars">★★★★★</div>
+          <div class="quote">«Понятная структура, всё применимо на практике буквально с первого дня. Очень бережная подача.»</div>
+          <div class="t-author"><div class="avatar">М</div><div><div class="name">Марина, 41</div><div class="role">Участница курса</div></div></div>
+        </div>
+        <div class="t-card reveal" data-delay="2" data-cursor data-spot>
+          <div class="spot"></div>
+          <div class="stars">★★★★★</div>
+          <div class="quote">«Спасибо за тёплую атмосферу и поддержку внутри сообщества. Чувствую, что я не одна.»</div>
+          <div class="t-author"><div class="avatar">Е</div><div><div class="name">Елена, 37</div><div class="role">Участница курса</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section-alt">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Вопросы и ответы</span>
+        <h2 class="display reveal-words">Что важно <em>знать</em></h2>
+      </div>
+      <div class="faq-wrap reveal">
+        <div class="faq-item">
+          <button class="faq-q" data-cursor>Когда начинается обучение? <span class="icon">+</span></button>
+          <div class="faq-a"><p>Доступ к материалам открывается с 1 числа следующего месяца после оплаты. Вы заранее получите письмо со всеми ссылками.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-cursor>Можно ли оплатить частями? <span class="icon">+</span></button>
+          <div class="faq-a"><p>Да, доступна рассрочка на 12 месяцев — первый платёж через 1 месяц после оформления, без переплат и процентов. Заявка занимает 1–2 минуты.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-cursor>Сколько действует доступ к курсу? <span class="icon">+</span></button>
+          <div class="faq-a"><p>Доступ к материалам предоставляется навсегда, без ограничений по времени. Вы можете возвращаться к урокам в любой момент.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" data-cursor>Что делать, если возникнут вопросы по оплате? <span class="icon">+</span></button>
+          <div class="faq-a"><p>Напишите нам — наша команда поможет разобраться в любой ситуации и подберёт удобный способ оплаты.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-aura" data-parallax="0.1"></div>
+    <div class="container">
+      <span class="eyebrow reveal">Время начать</span>
+      <h2 class="reveal-words">Начните свой путь к <em>гармонии</em> сегодня</h2>
+      <p class="reveal" data-delay="1">Акция со скидкой 30% действует до 23:59 (мск) 18 июня. Дальше — цена вернётся к прежней.</p>
+      <a href="#pricing" class="btn btn-primary reveal" data-delay="2" data-cursor data-magnetic><span>Оформить со скидкой</span> <span class="arrow">→</span></a>
+      <div class="note reveal" data-delay="2">Оплата частями · Доступ навсегда · Поддержка на всём пути</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">Все<span>лена</span></div>
+          <p>Пространство для роста, гармонии и счастливой жизни каждой женщины.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col"><h4>Навигация</h4><a href="#program" data-cursor>Программа</a><a href="#author" data-cursor>Об авторе</a><a href="#pricing" data-cursor>Тарифы</a><a href="#reviews" data-cursor>Отзывы</a></div>
+          <div class="footer-col"><h4>Контакты</h4><a href="#" data-cursor>Написать нам</a><a href="#" data-cursor>Telegram</a><a href="#" data-cursor>Instagram</a></div>
+          <div class="footer-col"><h4>Документы</h4><a href="#" data-cursor>Оферта</a><a href="#" data-cursor>Политика конфиденциальности</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>© 2026 Вселена Мастер. Все права защищены.</div><div>Сделано с теплом</div></div>
+    </div>
+  </footer>
+
+  <script>
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ===== Scroll progress =====
+    const progress = document.getElementById('progress');
+    const header = document.getElementById('header');
+    function onScroll() {
+      const h = document.documentElement;
+      const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+      progress.style.width = (scrolled * 100) + '%';
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ===== Split words for reveal =====
+    document.querySelectorAll('.reveal-words').forEach(el => {
+      const html = el.innerHTML;
+      // wrap each top-level text word, keep <em> intact
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+      const out = [];
+      temp.childNodes.forEach(node => {
+        if (node.nodeType === 3) {
+          node.textContent.split(/(\s+)/).forEach(w => {
+            if (w.trim()) out.push(`<span class="word"><span>${w}</span></span>`);
+            else out.push(w);
+          });
+        } else {
+          out.push(`<span class="word"><span>${node.outerHTML}</span></span>`);
+        }
+      });
+      el.innerHTML = out.join('');
+    });
+
+    // ===== Mobile menu =====
+    const burger = document.getElementById('burger');
+    const mobileBar = document.getElementById('mobileBar');
+    function closeMenu() { document.body.classList.remove('menu-open'); }
+    burger.addEventListener('click', () => document.body.classList.toggle('menu-open'));
+    document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
+
+    // Show sticky bar after hero, hide when menu open
+    const heroEl = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+      const past = window.scrollY > (heroEl.offsetHeight - 120);
+      mobileBar.classList.toggle('show', past && !document.body.classList.contains('menu-open'));
+    }, { passive: true });
+
+    // ===== Magnetic buttons =====
+    if (!reduce && window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll('[data-magnetic]').forEach(el => {
+        el.addEventListener('mousemove', e => {
+          const r = el.getBoundingClientRect();
+          const x = e.clientX - r.left - r.width/2;
+          const y = e.clientY - r.top - r.height/2;
+          el.style.transform = `translate(${x*0.25}px, ${y*0.35}px) translateY(-2px)`;
+        });
+        el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+      });
+    }
+
+    // ===== Spotlight on cards =====
+    document.querySelectorAll('[data-spot]').forEach(card => {
+      const spot = card.querySelector('.spot');
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        spot.style.left = (e.clientX - r.left) + 'px';
+        spot.style.top = (e.clientY - r.top) + 'px';
+      });
+    });
+
+    // ===== Tilt =====
+    if (!reduce && window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll('[data-tilt]').forEach(el => {
+        el.addEventListener('mousemove', e => {
+          const r = el.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          el.style.transform = `perspective(900px) rotateY(${px*6}deg) rotateX(${-py*6}deg) scale(1.02)`;
+        });
+        el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+      });
+    }
+
+    // ===== Parallax =====
+    const parallaxEls = document.querySelectorAll('[data-parallax]');
+    if (!reduce) {
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        parallaxEls.forEach(el => {
+          const speed = parseFloat(el.dataset.parallax);
+          el.style.transform = `translateY(${y * speed}px)`;
+        });
+      }, { passive: true });
+    }
+
+    // ===== Counters =====
+    function animateCount(el) {
+      const target = parseFloat(el.dataset.count);
+      const decimals = parseInt(el.dataset.decimals || '0');
+      const suffix = el.dataset.suffix || '';
+      const dur = 1600; const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start)/dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = (target * eased).toFixed(decimals);
+        el.textContent = (decimals ? val : Math.round(val).toLocaleString('ru-RU')) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // ===== Reveal + word reveal + counters =====
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          e.target.querySelectorAll && e.target.querySelectorAll('[data-count]').forEach(animateCount);
+          if (e.target.matches('[data-count]')) animateCount(e.target);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal, .reveal-words, [data-count]').forEach(el => io.observe(el));
+
+    // ===== FAQ =====
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const open = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!open) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
