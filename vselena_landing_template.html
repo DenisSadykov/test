@@ -152,8 +152,8 @@
     font-size: 26px;
     font-weight: 600;
   }
-  .logo span { color: var(--bronze); }
-  .nav-links { display: flex; gap: 40px; font-size: 14px; font-weight: 500; }
+  .logo span { color: inherit; }
+  .nav-links { display: flex; gap: 34px; font-size: 14px; font-weight: 500; }
   .nav-links a { position: relative; color: var(--ink-soft); transition: color 0.25s var(--ease); }
   .nav-links a::after {
     content: ''; position: absolute; left: 0; bottom: -5px;
@@ -226,10 +226,10 @@
   body.menu-open .mobile-menu { transform: translateY(0); pointer-events: auto; }
   .mobile-menu a.m-link {
     font-family: var(--font-display);
-    font-size: 34px;
+    font-size: 32px;
     font-weight: 600;
     color: var(--ink);
-    padding: 14px 0;
+    padding: 13px 0;
     border-bottom: 1px solid var(--line-soft);
     opacity: 0;
     transform: translateY(16px);
@@ -238,10 +238,11 @@
   .mobile-menu a.m-link em { font-style: italic; color: var(--bronze); }
   body.menu-open .mobile-menu a.m-link { opacity: 1; transform: none; }
   body.menu-open .mobile-menu a.m-link:nth-child(1) { transition-delay: 0.12s; }
-  body.menu-open .mobile-menu a.m-link:nth-child(2) { transition-delay: 0.18s; }
-  body.menu-open .mobile-menu a.m-link:nth-child(3) { transition-delay: 0.24s; }
-  body.menu-open .mobile-menu a.m-link:nth-child(4) { transition-delay: 0.30s; }
-  body.menu-open .mobile-menu a.m-link:nth-child(5) { transition-delay: 0.36s; }
+  body.menu-open .mobile-menu a.m-link:nth-child(2) { transition-delay: 0.17s; }
+  body.menu-open .mobile-menu a.m-link:nth-child(3) { transition-delay: 0.22s; }
+  body.menu-open .mobile-menu a.m-link:nth-child(4) { transition-delay: 0.27s; }
+  body.menu-open .mobile-menu a.m-link:nth-child(5) { transition-delay: 0.32s; }
+  body.menu-open .mobile-menu a.m-link:nth-child(6) { transition-delay: 0.37s; }
   .mobile-menu .m-cta { margin-top: auto; }
   .mobile-menu .m-cta .btn { width: 100%; justify-content: center; padding: 17px; }
   .mobile-menu .m-contacts { margin-top: 22px; display: flex; gap: 22px; font-size: 14px; color: var(--stone); }
@@ -293,11 +294,12 @@
   @keyframes pulse { 0%,100%{ box-shadow: 0 0 0 0 rgba(156,107,63,0.5);} 50%{ box-shadow: 0 0 0 6px rgba(156,107,63,0);} }
   .hero h1 { font-size: clamp(48px, 6.4vw, 86px); margin-bottom: 30px; }
   .hero h1 em { font-style: italic; font-weight: 400; color: var(--bronze); }
-  .hero .lead { font-size: 19px; color: var(--ink-soft); max-width: 460px; margin-bottom: 44px; }
+  .hero .lead { font-size: 18px; color: var(--ink-soft); max-width: 500px; margin-bottom: 18px; }
+  .hero .lead-italic { font-family: var(--font-display); font-style: italic; font-size: clamp(19px,2.1vw,24px); color: var(--ink); max-width: 500px; margin-bottom: 40px; line-height: 1.5; }
   .hero-actions { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
-  .hero-stats { display: flex; gap: 48px; margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line-soft); }
+  .hero-stats { display: flex; gap: 48px; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--line-soft); }
   .stat .figure { font-family: var(--font-display); font-size: 44px; font-weight: 600; line-height: 1; margin-bottom: 6px; }
-  .stat .label { font-size: 13px; color: var(--stone); }
+  .stat .label { font-size: 13px; color: var(--stone); max-width: 130px; }
 
   .hero-media { position: relative; }
   .hero-visual {
@@ -347,7 +349,7 @@
     border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
     background: var(--warm-white); overflow: hidden; padding: 26px 0;
   }
-  .marquee-track { display: flex; gap: 60px; width: max-content; animation: scroll-x 28s linear infinite; }
+  .marquee-track { display: flex; gap: 60px; width: max-content; animation: scroll-x 30s linear infinite; }
   .marquee:hover .marquee-track { animation-play-state: paused; }
   .marquee-item { font-family: var(--font-display); font-size: 26px; font-style: italic; color: var(--ink-soft); display: flex; align-items: center; gap: 60px; white-space: nowrap; }
   .marquee-item::after { content: '✦'; color: var(--bronze); font-style: normal; font-size: 14px; }
@@ -357,53 +359,106 @@
   section { padding: 130px 0; position: relative; }
   .section-alt { background: var(--warm-white); }
   .section-paper { background: var(--paper); }
-  .section-head { max-width: 660px; margin-bottom: 80px; }
+  .section-head { max-width: 680px; margin-bottom: 64px; }
   .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
   .section-head .eyebrow { display: block; margin-bottom: 20px; }
   .section-head h2 { font-size: clamp(36px, 4.6vw, 60px); }
   .section-head h2 em { font-style: italic; color: var(--bronze); font-weight: 400; }
   .section-head p { font-size: 18px; color: var(--ink-soft); margin-top: 22px; }
 
+  /* ===== Monologue ===== */
+  .author-section { background: var(--warm-white); }
+  .mono { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 70px; align-items: center; }
+  .mono-visual-wrap { position: sticky; top: 120px; }
+  .mono-visual {
+    aspect-ratio: 3/4; border-radius: var(--r-lg); border: 1px solid var(--line-soft); position: relative; overflow: hidden;
+    background: linear-gradient(160deg, rgba(156,107,63,0.14), rgba(33,28,23,0.2)), var(--canvas);
+    box-shadow: var(--shadow-md);
+  }
+  .mono-visual::after {
+    content: 'фото автора'; position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-style: italic; color: var(--stone); font-size: 18px;
+  }
+  .mono-head { font-family: var(--font-display); font-weight: 500; font-size: clamp(30px,4.4vw,52px); line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 30px; }
+  .mono-head em { font-style: italic; color: var(--bronze); }
+  .cries { font-family: var(--font-display); font-style: italic; font-size: clamp(19px,2.2vw,26px); line-height: 1.7; color: var(--ink); border-left: 2px solid var(--bronze); padding-left: 26px; margin-bottom: 34px; }
+  .why-body p { color: var(--ink-soft); font-size: 17px; margin-bottom: 14px; max-width: 560px; }
+  .why-body strong { color: var(--ink); font-weight: 700; }
+  .why-body em { font-style: italic; color: var(--bronze); }
+
   /* ===== Program ===== */
+  .program-lead { font-size: 19px; color: var(--ink-soft); max-width: 700px; margin-bottom: 40px; }
+  .pull-quote { border-left: 2px solid var(--bronze); padding: 4px 0 4px 28px; margin: 0 0 60px; max-width: 640px; }
+  .pull-quote .pq-text { font-family: var(--font-display); font-style: italic; font-size: clamp(20px,2.4vw,28px); line-height: 1.55; color: var(--ink-soft); margin-bottom: 16px; }
+  .pull-quote .pq-name { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); }
+
   .program-list { border-top: 1px solid var(--line); }
   .program-item {
-    padding: 38px 28px; border-bottom: 1px solid var(--line);
+    padding: 26px 28px; border-bottom: 1px solid var(--line);
     display: grid; grid-template-columns: 60px 1fr auto; gap: 32px; align-items: center;
     position: relative; transition: background 0.4s var(--ease), border-radius 0.4s var(--ease), box-shadow 0.4s var(--ease); overflow: hidden;
   }
   .program-item .bg-num {
     position: absolute; right: 30px; top: 50%; transform: translateY(-50%);
-    font-family: var(--font-display); font-size: 120px; font-weight: 600; color: var(--bronze);
+    font-family: var(--font-display); font-size: 110px; font-weight: 600; color: var(--bronze);
     opacity: 0; transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); pointer-events: none;
   }
   .program-item:hover { background: var(--pure); border-radius: var(--r-md); box-shadow: var(--shadow-sm); border-bottom-color: transparent; }
   .program-item:hover .bg-num { opacity: 0.08; transform: translateY(-50%) translateX(-10px); }
   .program-item .num { padding-top: 0; }
-  .program-item h3 { font-family: var(--font-display); font-size: 30px; font-weight: 600; line-height: 1.15; margin-bottom: 8px; }
-  .program-item p { color: var(--ink-soft); font-size: 15.5px; max-width: 520px; }
+  .program-item h3 { font-family: var(--font-display); font-size: clamp(20px,2vw,26px); font-weight: 600; line-height: 1.2; }
   .program-item .plus { font-size: 22px; color: var(--bronze); transition: transform 0.4s var(--ease); }
   .program-item:hover .plus { transform: rotate(90deg); }
 
-  /* ===== Author (sticky pin) ===== */
-  .author-section { background: var(--warm-white); }
-  .author { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 70px; align-items: center; }
-  .author-visual-wrap { position: sticky; top: 120px; }
-  .author-visual {
-    aspect-ratio: 3/4; border-radius: var(--r-lg); border: 1px solid var(--line-soft); position: relative; overflow: hidden;
-    background: linear-gradient(160deg, rgba(156,107,63,0.14), rgba(33,28,23,0.2)), var(--canvas);
-    box-shadow: var(--shadow-md);
+  .bonus-head { margin: 70px 0 28px; }
+  .bonus-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .bonus-card { background: var(--pure); border: 1px solid var(--line-soft); border-radius: var(--r-md); padding: 30px 26px; box-shadow: var(--shadow-sm); transition: transform 0.4s var(--ease); }
+  .bonus-card:hover { transform: translateY(-5px); }
+  .bonus-icon { font-size: 28px; margin-bottom: 14px; }
+  .bonus-card h4 { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+  .bonus-card p { font-size: 14.5px; color: var(--ink-soft); }
+
+  /* ===== Reviews ===== */
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .t-card {
+    background: var(--pure); border: 1px solid var(--line-soft); border-radius: var(--r-md); padding: 34px 30px;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); position: relative; overflow: hidden;
+    box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
   }
-  .author-visual::after {
-    content: 'фото автора'; position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display); font-style: italic; color: var(--stone); font-size: 18px;
+  .t-card .spot {
+    position: absolute; width: 240px; height: 240px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(156,107,63,0.14), transparent 70%);
+    pointer-events: none; opacity: 0; transition: opacity 0.4s; transform: translate(-50%,-50%);
   }
-  .author blockquote { font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 46px); line-height: 1.25; font-weight: 500; margin-bottom: 32px; }
-  .author blockquote em { font-style: italic; color: var(--bronze); }
-  .author .sign-name { font-weight: 700; font-size: 15px; }
-  .author .sign-role { color: var(--stone); font-size: 14px; }
+  .t-card:hover .spot { opacity: 1; }
+  .t-card:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -28px rgba(33,28,23,0.22); }
+  .t-card .rtag { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; position: relative; }
+  .t-card .quote { font-family: var(--font-display); font-size: 20px; line-height: 1.5; margin-bottom: 26px; font-weight: 500; position: relative; flex: 1; }
+  .t-author { display: flex; align-items: center; gap: 14px; position: relative; margin-top: auto; }
+  .t-author .avatar {
+    width: 46px; height: 46px; border-radius: 50%; background: var(--bronze-tint); color: var(--bronze-dark);
+    display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 19px; flex-shrink: 0;
+  }
+  .t-author .name { font-weight: 700; font-size: 14px; }
+  .t-author .role { font-size: 13px; color: var(--stone); }
+
+  .reviews-total { margin-top: 36px; padding: 34px 38px; background: var(--bronze-tint); border: 1px solid var(--line-soft); border-radius: var(--r-lg); display: flex; gap: 34px; align-items: center; flex-wrap: wrap; }
+  .reviews-total .total-num { font-family: var(--font-display); font-size: clamp(48px,6vw,64px); font-weight: 600; color: var(--bronze); line-height: 1; }
+  .reviews-total .total-text { font-size: 16px; color: var(--ink-soft); line-height: 1.6; max-width: 540px; }
+  .reviews-total .total-text strong { color: var(--ink); font-weight: 700; }
+
+  /* ===== Partnership ===== */
+  .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; }
+  .pcell { background: var(--pure); border: 1px solid var(--line-soft); border-radius: var(--r-md); padding: 30px 28px; box-shadow: var(--shadow-sm); }
+  .pcell-label { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bronze); margin-bottom: 12px; }
+  .pcell p { font-size: 15px; color: var(--ink-soft); line-height: 1.7; }
+  .partner-invite { font-family: var(--font-display); font-style: italic; font-size: clamp(20px,2.4vw,28px); color: var(--ink); margin-top: 40px; }
 
   /* ===== Pricing ===== */
+  .pricing-note { background: var(--bronze-tint); border-left: 3px solid var(--bronze); padding: 20px 24px; border-radius: var(--r-sm); max-width: 720px; margin: 0 auto 48px; font-size: 15px; color: var(--ink-soft); line-height: 1.7; text-align: left; }
+  .pricing-note strong { color: var(--ink); font-weight: 700; }
+  .pricing-note em { font-style: italic; color: var(--bronze); font-family: var(--font-display); font-size: 1.1em; }
   .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 880px; margin: 0 auto; }
   .price-card {
     background: var(--pure); border: 1px solid var(--line-soft); border-radius: var(--r-lg); padding: 48px 40px;
@@ -423,39 +478,24 @@
     font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
     padding: 6px 16px; border-radius: 999px; z-index: 2;
   }
-  .price-card h3 { font-family: var(--font-display); font-size: 26px; font-weight: 600; margin-bottom: 6px; position: relative; }
-  .price-card .sub { font-size: 14px; color: var(--stone); margin-bottom: 28px; position: relative; }
-  .price-card .price { font-family: var(--font-display); font-size: 56px; font-weight: 600; line-height: 1; margin-bottom: 4px; position: relative; }
-  .price-card .price small { font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--stone); }
-  .price-card .old { font-size: 16px; color: var(--stone); text-decoration: line-through; margin-bottom: 30px; position: relative; }
-  .price-card ul { list-style: none; margin: 30px 0 36px; position: relative; }
-  .price-card ul li { padding: 12px 0; border-top: 1px solid var(--line-soft); font-size: 15px; color: var(--ink-soft); display: flex; gap: 12px; }
+  .price-card h3 { font-family: var(--font-display); font-size: 26px; font-weight: 600; margin-bottom: 14px; position: relative; }
+  .price-card .price { font-family: var(--font-display); font-size: 52px; font-weight: 600; line-height: 1; margin-bottom: 4px; position: relative; }
+  .price-card .price .per { font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--stone); }
+  .price-card .old { font-size: 15px; color: var(--stone); text-decoration: line-through; margin-bottom: 8px; position: relative; }
+  .price-card .note { font-size: 12.5px; color: var(--stone); margin-bottom: 24px; position: relative; }
+  .price-card .note strong { color: var(--bronze); font-weight: 700; }
+  .price-card ul { list-style: none; margin: 26px 0 34px; position: relative; }
+  .price-card ul li { padding: 11px 0; border-top: 1px solid var(--line-soft); font-size: 14.5px; color: var(--ink-soft); display: flex; gap: 12px; }
   .price-card ul li .check { color: var(--bronze); font-weight: 700; flex-shrink: 0; }
   .price-card .btn { width: 100%; justify-content: center; position: relative; }
 
-  /* ===== Testimonials ===== */
-  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-  .t-card {
-    background: var(--pure); border: 1px solid var(--line-soft); border-radius: var(--r-md); padding: 36px 32px;
-    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); position: relative; overflow: hidden;
-    box-shadow: var(--shadow-sm);
-  }
-  .t-card .spot {
-    position: absolute; width: 240px; height: 240px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(156,107,63,0.14), transparent 70%);
-    pointer-events: none; opacity: 0; transition: opacity 0.4s; transform: translate(-50%,-50%);
-  }
-  .t-card:hover .spot { opacity: 1; }
-  .t-card:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -28px rgba(33,28,23,0.22); }
-  .t-card .stars { color: var(--bronze); letter-spacing: 2px; font-size: 14px; margin-bottom: 18px; position: relative; }
-  .t-card .quote { font-family: var(--font-display); font-size: 21px; line-height: 1.45; margin-bottom: 26px; font-weight: 500; position: relative; }
-  .t-author { display: flex; align-items: center; gap: 14px; position: relative; }
-  .t-author .avatar {
-    width: 46px; height: 46px; border-radius: 50%; background: var(--bronze-tint); color: var(--bronze-dark);
-    display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 19px;
-  }
-  .t-author .name { font-weight: 700; font-size: 14px; }
-  .t-author .role { font-size: 13px; color: var(--stone); }
+  /* ===== Objection ===== */
+  #objection { background: var(--pure); }
+  .obj-q { font-family: var(--font-display); font-style: italic; font-size: clamp(22px,2.8vw,32px); color: var(--stone); border-left: 2px solid var(--line); padding-left: 26px; margin-bottom: 36px; max-width: 640px; line-height: 1.4; }
+  .obj-a { max-width: 640px; }
+  .obj-a p { font-size: 17px; color: var(--ink-soft); margin-bottom: 14px; }
+  .obj-a strong { color: var(--ink); font-weight: 700; }
+  .obj-final { font-family: var(--font-display); font-style: italic; font-size: clamp(24px,3vw,38px); color: var(--ink); line-height: 1.3; margin-top: 28px; }
 
   /* ===== FAQ ===== */
   .faq-wrap { max-width: 820px; margin: 0 auto; }
@@ -473,7 +513,7 @@
   .faq-item.open .faq-q .icon { transform: rotate(45deg); background: var(--bronze); color: var(--pure); border-color: var(--bronze); }
   .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.45s var(--ease), padding 0.45s var(--ease); }
   .faq-a p { color: var(--ink-soft); font-size: 16px; padding-bottom: 4px; }
-  .faq-item.open .faq-a { max-height: 240px; padding-bottom: 30px; }
+  .faq-item.open .faq-a { max-height: 360px; padding-bottom: 30px; }
 
   /* ===== Final CTA ===== */
   .cta { background: var(--ink); color: var(--paper); text-align: center; padding: 150px 0; position: relative; overflow: hidden; }
@@ -483,11 +523,14 @@
     top: -220px; left: 50%; transform: translateX(-50%); pointer-events: none; will-change: transform;
   }
   .cta .eyebrow { color: var(--bronze-light); }
-  .cta h2 { font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 72px); font-weight: 500; line-height: 1.05; margin: 22px 0 24px; position: relative; }
+  .cta h2 { font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 76px); font-weight: 500; line-height: 1.05; margin: 22px 0 28px; position: relative; }
   .cta h2 em { font-style: italic; color: var(--bronze-light); }
-  .cta p { color: #c4b9aa; font-size: 18px; max-width: 520px; margin: 0 auto 44px; position: relative; }
+  .cta .cta-sub { font-family: var(--font-display); font-style: italic; font-size: clamp(17px,2vw,23px); color: rgba(247,243,236,0.62); max-width: 580px; margin: 0 auto 12px; line-height: 1.6; position: relative; }
+  .cta .cta-deadline { font-size: 13px; color: rgba(247,243,236,0.42); letter-spacing: 0.05em; margin: 22px auto 36px; position: relative; }
+  .cta .cta-deadline strong { color: var(--bronze-light); }
   .cta .btn-primary { position: relative; padding: 18px 44px; font-size: 15px; }
-  .cta .note { margin-top: 22px; font-size: 13px; color: #8a7f72; position: relative; }
+  .cta .note { margin-top: 18px; font-size: 13px; color: #8a7f72; position: relative; }
+  .cta .cta-sign { font-family: var(--font-display); font-style: italic; font-size: 21px; color: var(--bronze-light); margin-top: 42px; line-height: 1.5; position: relative; }
 
   /* ===== Footer ===== */
   footer { background: var(--canvas); border-top: 1px solid var(--line); padding: 64px 0 36px; }
@@ -517,10 +560,12 @@
   @media (max-width: 980px) {
     .hero-grid { grid-template-columns: 1fr; gap: 50px; }
     .hero-visual { max-width: 440px; }
-    .author { grid-template-columns: 1fr; gap: 40px; }
-    .author-visual-wrap { position: static; }
-    .author-visual { max-width: 360px; }
-    .testimonials-grid { grid-template-columns: 1fr; }
+    .mono { grid-template-columns: 1fr; gap: 40px; }
+    .mono-visual-wrap { position: static; }
+    .mono-visual { max-width: 360px; }
+    .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .bonus-grid { grid-template-columns: 1fr; }
+    .partner-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 760px) {
     .container, .header-inner { padding-left: 22px; padding-right: 22px; }
@@ -532,9 +577,10 @@
     section { padding: 90px 0; }
     .hero { padding: 140px 0 80px; }
     .pricing-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 28px; flex-wrap: wrap; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
     .hero-float { right: 12px; }
-    .program-item { grid-template-columns: 40px 1fr auto; gap: 16px; padding: 28px 8px; }
+    .program-item { grid-template-columns: 40px 1fr auto; gap: 16px; padding: 22px 8px; }
     .program-item .bg-num { display: none; }
     .scroll-hint { display: none; }
   }
@@ -546,25 +592,25 @@
 
   <header id="header">
     <div class="header-inner">
-      <div class="logo" data-cursor>Все<span>лена</span></div>
+      <div class="logo">Все<span>лена</span></div>
       <nav class="nav-links">
-        <a href="#program" data-cursor>Программа</a>
-        <a href="#author" data-cursor>Об авторе</a>
-        <a href="#pricing" data-cursor>Тарифы</a>
-        <a href="#reviews" data-cursor>Отзывы</a>
-        <a href="#faq" data-cursor>Вопросы</a>
+        <a href="#author">Об авторе</a>
+        <a href="#program">Программа</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#pricing">Тарифы</a>
+        <a href="#faq">Вопросы</a>
       </nav>
-      <a href="#pricing" class="btn btn-primary header-cta" data-cursor data-magnetic><span>Записаться</span></a>
+      <a href="#pricing" class="btn btn-primary header-cta" data-magnetic><span>Записаться</span></a>
       <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
     </div>
   </header>
 
   <!-- MOBILE MENU -->
   <nav class="mobile-menu" id="mobileMenu">
-    <a href="#program" class="m-link">Программа</a>
     <a href="#author" class="m-link">Об <em>авторе</em></a>
-    <a href="#pricing" class="m-link">Тарифы</a>
+    <a href="#program" class="m-link">Программа</a>
     <a href="#reviews" class="m-link">Отзывы</a>
+    <a href="#pricing" class="m-link">Тарифы</a>
     <a href="#faq" class="m-link">Вопросы</a>
     <div class="m-cta">
       <a href="#pricing" class="btn btn-primary"><span>Записаться со скидкой</span></a>
@@ -584,16 +630,17 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-copy">
-          <span class="hero-badge reveal"><span class="dot"></span> Акция −30% · до 18 июня</span>
+          <span class="hero-badge reveal"><span class="dot"></span> Авторский курс Вселены Мастер</span>
           <h1 class="display reveal-words">Сценарий <em>счастливой</em> женщины</h1>
-          <p class="lead reveal" data-delay="2">Авторская программа Вселены Мастер — спокойный, осознанный путь к гармонии, внутренней опоре и жизни, которая нравится. Доступна оплата частями.</p>
+          <p class="lead reveal" data-delay="2">Этот курс — 9 шагов вглубь себя, туда, где спит твоя настоящая женская сила, твой магнетизм, твоя красота и та самая сладость, от которой женщина становится желанной просто потому, что она есть.</p>
+          <p class="lead-italic reveal" data-delay="2">Запусти свою жизнь заново — со сценарием, написанным твоей рукой и твоим огнём.</p>
           <div class="hero-actions reveal" data-delay="3">
-            <a href="#pricing" class="btn btn-primary" data-cursor data-magnetic><span>Начать со скидкой</span> <span class="arrow">→</span></a>
-            <a href="#program" class="btn btn-link" data-cursor>Что внутри программы</a>
+            <a href="#pricing" class="btn btn-primary" data-magnetic><span>Начать со скидкой</span> <span class="arrow">→</span></a>
+            <a href="#program" class="btn btn-link">Что внутри программы</a>
           </div>
           <div class="hero-stats reveal" data-delay="3">
-            <div class="stat"><div class="figure" data-count="5000" data-suffix="+">0</div><div class="label">участниц прошли курс</div></div>
-            <div class="stat"><div class="figure" data-count="4.9" data-decimals="1">0</div><div class="label">средняя оценка</div></div>
+            <div class="stat"><div class="figure" data-count="9">0</div><div class="label">живых трек-сессий</div></div>
+            <div class="stat"><div class="figure" data-count="52">0</div><div class="label">года я собирала этот путь</div></div>
             <div class="stat"><div class="figure">∞</div><div class="label">доступ навсегда</div></div>
           </div>
         </div>
@@ -604,7 +651,7 @@
           </div>
           <div class="hero-float" data-parallax="0.12">
             <div class="stars">★★★★★</div>
-            <div class="txt">«Программа изменила мою жизнь»</div>
+            <div class="txt">«Жизнь наполнилась ЖИЗНЬЮ»</div>
           </div>
         </div>
       </div>
@@ -615,62 +662,167 @@
   <!-- MARQUEE -->
   <div class="marquee">
     <div class="marquee-track">
-      <div class="marquee-item">Осознанность<span></span>Отношения<span></span>Финансы<span></span>Внутренняя опора<span></span>Счастье<span></span></div>
-      <div class="marquee-item">Осознанность<span></span>Отношения<span></span>Финансы<span></span>Внутренняя опора<span></span>Счастье<span></span></div>
+      <div class="marquee-item">Женская природа<span></span>Магнетизм<span></span>Внутренняя опора<span></span>Счастье<span></span>Свой сценарий<span></span>Отношения<span></span>Финансы<span></span>Осознанность<span></span></div>
+      <div class="marquee-item">Женская природа<span></span>Магнетизм<span></span>Внутренняя опора<span></span>Счастье<span></span>Свой сценарий<span></span>Отношения<span></span>Финансы<span></span>Осознанность<span></span></div>
     </div>
   </div>
+
+  <!-- MONOLOGUE / AUTHOR -->
+  <section id="author" class="author-section">
+    <div class="container">
+      <div class="mono">
+        <div class="mono-visual-wrap reveal">
+          <div class="mono-visual" data-tilt></div>
+        </div>
+        <div class="reveal" data-delay="1">
+          <h2 class="mono-head">Выйди из чужого сценария.<br><em>Напиши свой.</em></h2>
+          <div class="cries">
+            «Мне надоело страдать.»<br>
+            «Не хочу жить просто, чтобы не было больно.»<br>
+            «Хочу орать, плакать, быть слабой — и не осуждать себя за это.»<br>
+            «Хочу быть счастливой по-настоящему. Изнутри. Из каждой клетки.»
+          </div>
+          <div class="why-body">
+            <p>Я тоже это чувствовала.</p>
+            <p>И у меня не было человека, который сказал бы: вот как устроена жизнь. Вот закон. Вот практика. Иди.</p>
+            <p>Я собирала всё по крупицам — через боль, через ошибки, через тысячи женщин, которые приходили опустошёнными — и уходили собой.</p>
+            <p>У меня не было проводника — того, кто показал бы мне куда идти. Но у тебя он есть.</p>
+            <p><strong>Я рядом.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- PROGRAM -->
   <section id="program">
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">О программе</span>
+        <p class="program-lead">Не лекции. 9 живых трек-сессий — чтобы распаковать себя, отпустить, начать желать и разжечь тот огонь, который так тщательно в тебе гасили все эти годы.</p>
+      </div>
+      <div class="pull-quote reveal">
+        <div class="pq-text">«Я не объясняю, как стать счастливой. Я знаю — это невозможно объяснить. Это можно только прожить.»</div>
+        <div class="pq-name">Вселена Мастер</div>
+      </div>
+      <div class="section-head reveal" style="margin-bottom:48px">
         <h2 class="display reveal-words">Путь, выстроенный <em>шаг за шагом</em></h2>
-        <p>Никакой воды и абстрактных теорий — только практические инструменты, которые остаются с вами навсегда.</p>
       </div>
       <div class="program-list">
-        <div class="program-item reveal" data-cursor>
-          <span class="num">01</span>
-          <div><h3>Развитие осознанности</h3><p>Учитесь слышать себя, понимать свои желания и принимать решения из состояния спокойствия, а не тревоги.</p></div>
-          <span class="plus">+</span>
-          <span class="bg-num">01</span>
+        <div class="program-item reveal"><span class="num">01</span><h3>Снова слышать себя под слоем «надо»</h3><span class="plus">+</span><span class="bg-num">01</span></div>
+        <div class="program-item reveal"><span class="num">02</span><h3>Найти, где живёт твоя женская природа</h3><span class="plus">+</span><span class="bg-num">02</span></div>
+        <div class="program-item reveal"><span class="num">03</span><h3>Разрешить себе хотеть</h3><span class="plus">+</span><span class="bg-num">03</span></div>
+        <div class="program-item reveal"><span class="num">04</span><h3>Вернуть право быть собой, а не удобной для всех</h3><span class="plus">+</span><span class="bg-num">04</span></div>
+        <div class="program-item reveal"><span class="num">05</span><h3>Найти опору внутри себя</h3><span class="plus">+</span><span class="bg-num">05</span></div>
+        <div class="program-item reveal"><span class="num">06</span><h3>Впустить магнетизм и женскую сладость</h3><span class="plus">+</span><span class="bg-num">06</span></div>
+        <div class="program-item reveal"><span class="num">07</span><h3>Отпустить чужой сценарий</h3><span class="plus">+</span><span class="bg-num">07</span></div>
+        <div class="program-item reveal"><span class="num">08</span><h3>Начать писать свой</h3><span class="plus">+</span><span class="bg-num">08</span></div>
+        <div class="program-item reveal"><span class="num">09</span><h3>Вернуться к себе настоящей</h3><span class="plus">+</span><span class="bg-num">09</span></div>
+      </div>
+
+      <div class="bonus-head reveal">
+        <span class="eyebrow">Твои бонусы</span>
+      </div>
+      <div class="bonus-grid">
+        <div class="bonus-card reveal">
+          <div class="bonus-icon">🔑</div>
+          <h4>Ключ на Седьмое небо</h4>
+          <p>Цифровой артефакт с практиками — то, что я использую сама каждый день.</p>
         </div>
-        <div class="program-item reveal" data-cursor>
-          <span class="num">02</span>
-          <div><h3>Гармония в отношениях</h3><p>Выстраивайте здоровые границы и тёплую связь с близкими — без вины и самопожертвования.</p></div>
-          <span class="plus">+</span>
-          <span class="bg-num">02</span>
+        <div class="bonus-card reveal" data-delay="1">
+          <div class="bonus-icon">🎁</div>
+          <h4>Цифровой талисман силы</h4>
+          <p>Индивидуально для каждой участницы.</p>
         </div>
-        <div class="program-item reveal" data-cursor>
-          <span class="num">03</span>
-          <div><h3>Управление финансами</h3><p>Меняйте отношение к деньгам и формируйте устойчивое изобилие как естественную часть жизни.</p></div>
-          <span class="plus">+</span>
-          <span class="bg-num">03</span>
-        </div>
-        <div class="program-item reveal" data-cursor>
-          <span class="num">04</span>
-          <div><h3>Поиск своего счастья</h3><p>Собираете собственный сценарий счастливой жизни — тот, что подходит именно вам.</p></div>
-          <span class="plus">+</span>
-          <span class="bg-num">04</span>
+        <div class="bonus-card reveal" data-delay="2">
+          <div class="bonus-icon">∞</div>
+          <h4>Доступ навсегда</h4>
+          <p>В записи, без ограничений по времени.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- AUTHOR -->
-  <section id="author" class="author-section">
+  <!-- REVIEWS -->
+  <section id="reviews" class="section-alt">
     <div class="container">
-      <div class="author">
-        <div class="author-visual-wrap reveal">
-          <div class="author-visual" data-tilt></div>
+      <div class="section-head center reveal">
+        <span class="eyebrow">Отзывы участниц</span>
+        <h2 class="display reveal-words">Они уже <em>изменили свою жизнь</em></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="t-card reveal" data-spot>
+          <div class="spot"></div>
+          <div class="rtag">🔥 История года</div>
+          <div class="quote">«За этот год жизнь поменялась кардинально. Отсеялись токсичные люди. Исполнилась моя мечта — я переехала жить в Таиланд. Я очень счастлива. Безмерно благодарна клубу и Вселене.»</div>
+          <div class="t-author"><div class="avatar">E</div><div><div class="name">Elena</div><div class="role">в клубе с июня 2025</div></div></div>
         </div>
-        <div class="reveal" data-delay="1">
-          <span class="eyebrow" style="display:block; margin-bottom:24px;">Об авторе</span>
-          <blockquote class="display">«Я создала это пространство, чтобы каждая женщина смогла обрести <em>понимание себя</em> и внести в свою жизнь больше гармонии.»</blockquote>
-          <div class="sign-name">Вселена Мастер</div>
-          <div class="sign-role">Автор программы, наставник по личностному росту</div>
+        <div class="t-card reveal" data-delay="1" data-spot>
+          <div class="spot"></div>
+          <div class="rtag">✨ Трансформация</div>
+          <div class="quote">«Внутренне полностью трансформировалась. У меня выросли крылья — я летаю по жизни и ничего не боюсь. Все планы сбываются очень быстро, играючи легко.»</div>
+          <div class="t-author"><div class="avatar">J</div><div><div class="name">Julia Рыжова</div><div class="role">в клубе больше года</div></div></div>
+        </div>
+        <div class="t-card reveal" data-delay="2" data-spot>
+          <div class="spot"></div>
+          <div class="rtag">💪 Смелый шаг</div>
+          <div class="quote">«Я изменилась сама, очень изменилась. Сменила работу в 51 год — 30 лет стажа. Жизнь радует и расцветает благодаря практикам Вселены.»</div>
+          <div class="t-author"><div class="avatar">К</div><div><div class="name">Катерина</div><div class="role">продолжает меняться</div></div></div>
+        </div>
+        <div class="t-card reveal" data-spot>
+          <div class="spot"></div>
+          <div class="rtag">🌱 Полгода</div>
+          <div class="quote">«Я вижу в себе колоссальные изменения. Стала увереннее, гармоничнее, уравновешеннее. Любима сама себе.»</div>
+          <div class="t-author"><div class="avatar">Н</div><div><div class="name">НеоНилла</div><div class="role">полгода в клубе</div></div></div>
+        </div>
+        <div class="t-card reveal" data-delay="1" data-spot>
+          <div class="spot"></div>
+          <div class="rtag">☀️ С 2023</div>
+          <div class="quote">«С января 2023 иду за своим Мастером по сей день. Принимаю участие во всём. Жизнь наполнилась ЖИЗНЬЮ.»</div>
+          <div class="t-author"><div class="avatar">Е</div><div><div class="name">Елена Ткачева</div><div class="role">с 2023 года</div></div></div>
+        </div>
+        <div class="t-card reveal" data-delay="2" data-spot>
+          <div class="spot"></div>
+          <div class="rtag">💫 Каждый день</div>
+          <div class="quote">«День за днём становлюсь самой собой — настоящей, смелой. Стала верить в себя и Бога. Жизнь становится всё лучше и гармоничнее.»</div>
+          <div class="t-author"><div class="avatar">Е</div><div><div class="name">Елена Ма</div><div class="role">участница клуба</div></div></div>
         </div>
       </div>
+
+      <div class="reviews-total reveal">
+        <div class="total-num">1000+</div>
+        <div class="total-text"><strong>женщин уже изменили свою жизнь</strong> рядом с Вселеной. Разные возрасты, разные точки старта — одно общее: они решились и пошли.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERSHIP -->
+  <section id="partnership">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Партнёрство счастливых женщин</span>
+        <h2 class="display reveal-words">Счастьем нельзя владеть <em>в одиночку</em></h2>
+        <p>Я хочу, чтобы счастливой была каждая женщина. Поэтому внутри курса я открываю свой круг.</p>
+      </div>
+      <div class="partner-grid">
+        <div class="pcell reveal">
+          <div class="pcell-label">Как это работает</div>
+          <p>Ты проходишь путь, меняешься, расцветаешь. И начинаешь рекомендовать то, что изменило тебя саму — курс, артефакты, косметику. Не рекламируешь. Просто рассказываешь о том, что полюбила.</p>
+        </div>
+        <div class="pcell reveal" data-delay="1">
+          <div class="pcell-label">Твоё вознаграждение</div>
+          <p>Я возвращаю тебе 30% с каждой покупки по твоей рекомендации. В кабинете ты заранее видишь по каждому продукту — вот цена, а вот твоё вознаграждение. Без вложений.</p>
+        </div>
+        <div class="pcell reveal">
+          <div class="pcell-label">Твоя задача</div>
+          <p>Всего две вещи: попробовать самой и поделиться. Всё остальное я беру на себя.</p>
+        </div>
+        <div class="pcell reveal" data-delay="1">
+          <div class="pcell-label">Я дам тебе всё что нужно</div>
+          <p>Объясню, как рассказать о себе в соцсетях, какие рилсы снимать, как говорить о том, что любишь, так, чтобы это отзывалось в сердце. Готовые сценарии, слова, поддержку — всё уже будет внутри.</p>
+        </div>
+      </div>
+      <p class="partner-invite reveal">Хочешь в этот круг? Я буду тебе очень рада. 🤍</p>
     </div>
   </section>
 
@@ -680,68 +832,61 @@
       <div class="section-head center reveal">
         <span class="eyebrow">Тарифы</span>
         <h2 class="display reveal-words">Выберите <em>свой вариант</em></h2>
-        <p>Начало обучения — с 1 числа следующего месяца после оплаты.</p>
+      </div>
+      <div class="pricing-note reveal">
+        Доступ к курсу открывается <strong>1 июля</strong>. Но окно с бережной ценой — сейчас.<br>
+        После <strong>18 июня — последнего дня скидки 30%</strong> — цена вырастет. С 1 июля — только полная цена.<br>
+        <em>Если что-то внутри уже знает — не заставляй это снова ждать.</em>
       </div>
       <div class="pricing-grid">
-        <div class="price-card reveal" data-cursor data-spot>
+        <div class="price-card reveal" data-spot>
           <div class="spot"></div>
           <h3>Полная оплата</h3>
-          <div class="sub">Сценарий счастливой женщины</div>
-          <div class="price">69 974 <small>₽</small></div>
-          <div class="old">99 962 ₽</div>
+          <div class="price">69 974 <span class="per">₽</span></div>
+          <div class="old">99 963 ₽</div>
+          <div class="note">Скидка 30% · действует до <strong>18 июня — последний день</strong></div>
           <ul>
-            <li><span class="check">✓</span> Полный доступ ко всем урокам</li>
+            <li><span class="check">✓</span> Полный доступ ко всем 9 сессиям</li>
             <li><span class="check">✓</span> Все практики и материалы</li>
+            <li><span class="check">✓</span> Бонус «Ключ на Седьмое небо»</li>
+            <li><span class="check">✓</span> Цифровой талисман силы</li>
             <li><span class="check">✓</span> Доступ навсегда</li>
             <li><span class="check">✓</span> Доступ в сообщество</li>
           </ul>
-          <a href="#" class="btn btn-ghost" data-cursor>Оформить</a>
+          <a href="#" class="btn btn-ghost">Оформить</a>
         </div>
-        <div class="price-card featured reveal" data-delay="1" data-cursor data-spot>
+        <div class="price-card featured reveal" data-delay="1" data-spot>
           <div class="spot"></div>
           <span class="tag">Удобно</span>
-          <h3>Рассрочка 12 месяцев</h3>
-          <div class="sub">Первый платёж — через 1 месяц</div>
-          <div class="price">5 831 <small>₽ / мес</small></div>
+          <h3>Рассрочка · 12 месяцев</h3>
+          <div class="price">5 831 <span class="per">₽ / мес</span></div>
           <div class="old">69 974 ₽ единовременно</div>
+          <div class="note">Первый платёж — через 1 месяц · без переплат</div>
           <ul>
             <li><span class="check">✓</span> Всё из тарифа «Полная оплата»</li>
             <li><span class="check">✓</span> Первый платёж через 1 месяц</li>
             <li><span class="check">✓</span> Без переплат и процентов</li>
             <li><span class="check">✓</span> Заявка за 1–2 минуты</li>
           </ul>
-          <a href="#" class="btn btn-primary" data-cursor data-magnetic><span>Оформить рассрочку</span> <span class="arrow">→</span></a>
+          <a href="#" class="btn btn-primary" data-magnetic><span>Оформить рассрочку</span> <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="reviews">
+  <!-- OBJECTION -->
+  <section id="objection">
     <div class="container">
-      <div class="section-head center reveal">
-        <span class="eyebrow">Отзывы</span>
-        <h2 class="display reveal-words">Истории <em>участниц</em></h2>
+      <div class="section-head reveal">
+        <span class="eyebrow">Прежде чем закрыть страницу</span>
       </div>
-      <div class="testimonials-grid">
-        <div class="t-card reveal" data-cursor data-spot>
-          <div class="spot"></div>
-          <div class="stars">★★★★★</div>
-          <div class="quote">«Программа помогла мне разобраться в себе и наконец двигаться вперёд без постоянного чувства вины.»</div>
-          <div class="t-author"><div class="avatar">А</div><div><div class="name">Анна, 34</div><div class="role">Участница курса</div></div></div>
-        </div>
-        <div class="t-card reveal" data-delay="1" data-cursor data-spot>
-          <div class="spot"></div>
-          <div class="stars">★★★★★</div>
-          <div class="quote">«Понятная структура, всё применимо на практике буквально с первого дня. Очень бережная подача.»</div>
-          <div class="t-author"><div class="avatar">М</div><div><div class="name">Марина, 41</div><div class="role">Участница курса</div></div></div>
-        </div>
-        <div class="t-card reveal" data-delay="2" data-cursor data-spot>
-          <div class="spot"></div>
-          <div class="stars">★★★★★</div>
-          <div class="quote">«Спасибо за тёплую атмосферу и поддержку внутри сообщества. Чувствую, что я не одна.»</div>
-          <div class="t-author"><div class="avatar">Е</div><div><div class="name">Елена, 37</div><div class="role">Участница курса</div></div></div>
-        </div>
+      <div class="obj-q reveal">«Это дорого. Сначала разберусь с другим. Заслужу — потом».</div>
+      <div class="obj-a reveal" data-delay="1">
+        <p><strong>Остановись.</strong></p>
+        <p>Это и есть та самая программа. Та, которая всю жизнь говорит: <strong>сначала всем, потом себе.</strong></p>
+        <p>Я прошла десятки лет, чтобы собрать то, что ты получишь за 9 сессий.</p>
+        <p>Вопрос не в том, заслуживаешь ли ты.</p>
+        <div class="obj-final">Вопрос в том — сколько ещё ты готова ждать своей очереди.</div>
       </div>
     </div>
   </section>
@@ -755,20 +900,20 @@
       </div>
       <div class="faq-wrap reveal">
         <div class="faq-item">
-          <button class="faq-q" data-cursor>Когда начинается обучение? <span class="icon">+</span></button>
-          <div class="faq-a"><p>Доступ к материалам открывается с 1 числа следующего месяца после оплаты. Вы заранее получите письмо со всеми ссылками.</p></div>
+          <button class="faq-q">Когда начинается обучение? <span class="icon">+</span></button>
+          <div class="faq-a"><p>Доступ открывается 1 июля. Но ты уже сделала самое важное — выбрала себя.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" data-cursor>Можно ли оплатить частями? <span class="icon">+</span></button>
-          <div class="faq-a"><p>Да, доступна рассрочка на 12 месяцев — первый платёж через 1 месяц после оформления, без переплат и процентов. Заявка занимает 1–2 минуты.</p></div>
+          <button class="faq-q">Можно ли оплатить частями? <span class="icon">+</span></button>
+          <div class="faq-a"><p>Да. Рассрочка на 12 месяцев, без переплат. Первый платёж — через месяц после оформления. Чтобы решение принималось из желания, а не из надрыва.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" data-cursor>Сколько действует доступ к курсу? <span class="icon">+</span></button>
-          <div class="faq-a"><p>Доступ к материалам предоставляется навсегда, без ограничений по времени. Вы можете возвращаться к урокам в любой момент.</p></div>
+          <button class="faq-q">Сколько действует доступ? <span class="icon">+</span></button>
+          <div class="faq-a"><p>Навсегда. Этот путь никуда не торопится. Ты сможешь возвращаться к нему столько раз, сколько нужно.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" data-cursor>Что делать, если возникнут вопросы по оплате? <span class="icon">+</span></button>
-          <div class="faq-a"><p>Напишите нам — наша команда поможет разобраться в любой ситуации и подберёт удобный способ оплаты.</p></div>
+          <button class="faq-q">Что если возникнут вопросы? <span class="icon">+</span></button>
+          <div class="faq-a"><p>Напиши нам. Тебе ответят живые люди, которые знают этот путь.</p></div>
         </div>
       </div>
     </div>
@@ -779,10 +924,14 @@
     <div class="cta-aura" data-parallax="0.1"></div>
     <div class="container">
       <span class="eyebrow reveal">Время начать</span>
-      <h2 class="reveal-words">Начните свой путь к <em>гармонии</em> сегодня</h2>
-      <p class="reveal" data-delay="1">Акция со скидкой 30% действует до 23:59 (мск) 18 июня. Дальше — цена вернётся к прежней.</p>
-      <a href="#pricing" class="btn btn-primary reveal" data-delay="2" data-cursor data-magnetic><span>Оформить со скидкой</span> <span class="arrow">→</span></a>
-      <div class="note reveal" data-delay="2">Оплата частями · Доступ навсегда · Поддержка на всём пути</div>
+      <h2 class="reveal-words">Тебе <em>можно.</em></h2>
+      <p class="cta-sub reveal" data-delay="1">Ты так долго ждала разрешения. Чтобы кто-то наконец сказал: тебе можно.</p>
+      <p class="cta-sub reveal" data-delay="1">Так услышь от меня, моя хорошая: тебе можно. Можно хотеть, можно плакать, можно быть слабой, можно быть счастливой — прямо сейчас, из этой точки, такой как есть.</p>
+      <p class="cta-sub reveal" data-delay="2">Это разрешение всегда было твоим. Я просто иду рядом, чтобы ты вспомнила.</p>
+      <p class="cta-deadline reveal" data-delay="2">Акция −30% действует до <strong>23:59 (мск) 18 июня</strong>. После — цена вырастет.</p>
+      <a href="#pricing" class="btn btn-primary reveal" data-delay="2" data-magnetic><span>Я разрешаю себе быть счастливой</span></a>
+      <div class="note reveal" data-delay="2">Рассрочка · Доступ навсегда · Вселена рядом</div>
+      <p class="cta-sign reveal" data-delay="3">Пойдём, что скажешь?<br>С любовью, твоя Вселена ❤️</p>
     </div>
   </section>
 
@@ -795,9 +944,9 @@
           <p>Пространство для роста, гармонии и счастливой жизни каждой женщины.</p>
         </div>
         <div class="footer-cols">
-          <div class="footer-col"><h4>Навигация</h4><a href="#program" data-cursor>Программа</a><a href="#author" data-cursor>Об авторе</a><a href="#pricing" data-cursor>Тарифы</a><a href="#reviews" data-cursor>Отзывы</a></div>
-          <div class="footer-col"><h4>Контакты</h4><a href="#" data-cursor>Написать нам</a><a href="#" data-cursor>Telegram</a><a href="#" data-cursor>Instagram</a></div>
-          <div class="footer-col"><h4>Документы</h4><a href="#" data-cursor>Оферта</a><a href="#" data-cursor>Политика конфиденциальности</a></div>
+          <div class="footer-col"><h4>Навигация</h4><a href="#author">Об авторе</a><a href="#program">Программа</a><a href="#reviews">Отзывы</a><a href="#pricing">Тарифы</a></div>
+          <div class="footer-col"><h4>Контакты</h4><a href="#">Написать нам</a><a href="#">Telegram</a><a href="#">Instagram</a></div>
+          <div class="footer-col"><h4>Документы</h4><a href="#">Оферта</a><a href="#">Политика конфиденциальности</a></div>
         </div>
       </div>
       <div class="footer-bottom"><div>© 2026 Вселена Мастер. Все права защищены.</div><div>Сделано с теплом</div></div>
@@ -822,7 +971,6 @@
     // ===== Split words for reveal =====
     document.querySelectorAll('.reveal-words').forEach(el => {
       const html = el.innerHTML;
-      // wrap each top-level text word, keep <em> intact
       const temp = document.createElement('div');
       temp.innerHTML = html;
       const out = [];
@@ -846,7 +994,6 @@
     burger.addEventListener('click', () => document.body.classList.toggle('menu-open'));
     document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
 
-    // Show sticky bar after hero, hide when menu open
     const heroEl = document.querySelector('.hero');
     window.addEventListener('scroll', () => {
       const past = window.scrollY > (heroEl.offsetHeight - 120);
