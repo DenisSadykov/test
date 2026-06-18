@@ -596,38 +596,39 @@
   /* ===== Objection — centered dark manifesto panel ===== */
   #objection { background: var(--canvas); }
   .obj-panel {
-    position: relative; max-width: 1000px; margin: 0 auto;
-    background: var(--ink); color: var(--paper);
-    border-radius: var(--r-lg); padding: 84px 88px 78px;
-    overflow: hidden; box-shadow: var(--shadow-lg);
+    position: relative; max-width: 860px; margin: 0 auto;
+    background: transparent; color: var(--ink);
+    padding: 0; overflow: visible; box-shadow: none;
+    text-align: center;
   }
-  .obj-panel::before {
-    content: ''; position: absolute; width: 560px; height: 560px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(156,107,63,0.38), transparent 64%);
-    top: -200px; right: -180px; pointer-events: none;
-  }
+  .obj-panel::before { display: none; }
   .obj-mark {
-    position: absolute; top: 4px; left: 50px; z-index: 0;
-    font-family: var(--font-display); font-style: italic; font-size: 230px; line-height: 1;
-    color: rgba(184,137,92,0.16); pointer-events: none; user-select: none;
+    display: block; position: static;
+    font-family: var(--font-display); font-style: italic;
+    font-size: clamp(72px, 11vw, 140px); line-height: 0.85;
+    color: var(--bronze); opacity: 0.28;
+    pointer-events: none; user-select: none;
+    margin-bottom: 20px;
   }
   .obj-panel > * { position: relative; z-index: 1; }
-  .obj-panel .eyebrow { color: var(--bronze-light); display: block; margin-bottom: 30px; }
+  .obj-panel .eyebrow { color: var(--bronze); display: block; margin-bottom: 32px; }
   .obj-q {
-    font-family: var(--font-display); font-style: italic; font-size: clamp(24px,3.1vw,40px);
-    color: rgba(247,243,236,0.5); margin-bottom: 44px; max-width: 720px; line-height: 1.32;
+    font-family: var(--font-display); font-style: italic; font-size: clamp(28px, 4vw, 52px);
+    color: var(--ink-soft); margin: 0 auto 60px; max-width: 760px; line-height: 1.28;
   }
-  .obj-a { max-width: 700px; }
+  .obj-a { max-width: 580px; margin: 0 auto; }
   .obj-stop {
-    font-family: var(--font-display); font-style: italic; font-size: clamp(24px,2.8vw,34px);
-    color: var(--paper); margin-bottom: 22px; line-height: 1.2;
+    display: block;
+    font-family: var(--font-display); font-style: italic; font-size: clamp(44px, 6.5vw, 84px);
+    color: var(--ink); margin-bottom: 28px; line-height: 1.0;
   }
-  .obj-a p { font-size: 17.5px; color: rgba(247,243,236,0.76); margin-bottom: 16px; line-height: 1.7; }
-  .obj-a strong { color: var(--paper); font-weight: 700; }
+  .obj-a p { font-size: 18px; color: var(--ink-soft); margin-bottom: 16px; line-height: 1.75; }
+  .obj-a strong { color: var(--ink); font-weight: 700; }
   .obj-final {
-    font-family: var(--font-display); font-style: italic; font-size: clamp(28px,3.6vw,46px);
-    color: var(--bronze-light); line-height: 1.22; margin-top: 40px;
-    padding-top: 36px; border-top: 1px solid rgba(247,243,236,0.12);
+    font-family: var(--font-display); font-style: italic; font-size: clamp(30px, 4vw, 52px);
+    color: var(--bronze); line-height: 1.22; margin: 52px auto 0;
+    padding-top: 44px; border-top: 1px solid var(--line);
+    max-width: 700px;
   }
 
   /* ===== FAQ ===== */
@@ -716,8 +717,26 @@
     .program-item { grid-template-columns: 40px 1fr auto; gap: 16px; padding: 22px 8px; }
     .program-item .bg-num { display: none; }
     .scroll-hint { display: none; }
-    .obj-panel { padding: 48px 26px 44px; border-radius: var(--r-md); }
-    .obj-mark { font-size: 150px; left: 20px; top: 8px; }
+    .obj-panel { padding: 0; }
+    .obj-mark { font-size: 80px; }
+
+    /* Signature: не выходит за края на мобильном */
+    .signature { position: static; display: inline-block; margin-top: 16px; left: auto; bottom: auto; }
+    .hero-media { text-align: center; }
+
+    /* Параллакс сброс — на мобильном трансформы отключены через JS */
+    [data-parallax] { transform: none !important; will-change: auto; }
+
+    /* Лотус меньше на мобильном */
+    .mono-visual { max-width: 260px; }
+
+    /* Шаги программы — одинаковый размер */
+    .con-step.sz-lg,
+    .con-step.sz-md,
+    .con-step.sz-sm { padding: 20px 20px 20px 18px; }
+    .con-step.sz-lg .con-title,
+    .con-step.sz-md .con-title,
+    .con-step.sz-sm .con-title { font-size: 17px; }
   }
 </style>
 </head>
@@ -1245,6 +1264,7 @@
     const parallaxEls = document.querySelectorAll('[data-parallax]');
     if (!reduce) {
       window.addEventListener('scroll', () => {
+        if (window.innerWidth <= 760) return;
         const y = window.scrollY;
         parallaxEls.forEach(el => {
           const speed = parseFloat(el.dataset.parallax);
