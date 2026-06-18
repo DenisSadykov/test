@@ -1073,20 +1073,26 @@
     .obj-mark { font-size: 80px; }
 
     /* Фото: наверх, на всю ширину */
-    .signature { position: static; display: inline-block; margin-top: 14px; left: auto; bottom: auto; }
+    .signature { display: none; }
     .hero-media {
       order: -1;
-      margin: 0 -22px 32px;
+      margin: 0 -22px 28px;
       width: calc(100% + 44px);
-      text-align: center;
     }
     .hero-visual {
       width: 100%;
       max-width: 100%;
       aspect-ratio: unset;
-      height: 52vh;
+      height: auto;
       margin: 0;
       border-radius: 0 0 22px 22px;
+    }
+    .hero-visual img {
+      position: static;
+      width: 100%;
+      height: auto;
+      object-fit: initial;
+      display: block;
     }
 
     /* Параллакс сброс — на мобильном трансформы отключены через JS */
