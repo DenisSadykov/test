@@ -613,7 +613,8 @@
   .constellation { position: relative; height: 1180px; max-width: 1040px; margin: 0 auto; }
   .con-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: visible; }
   .con-thread { fill: none; stroke: var(--line); stroke-width: 2; stroke-linecap: round; }
-  .con-trail { fill: none; stroke: url(#conGrad); stroke-width: 2.5; stroke-linecap: round; transition: stroke-dashoffset 0.6s var(--ease); }
+  .con-trail { fill: none; stroke: url(#conGrad); stroke-width: 3; stroke-linecap: round; }
+  #conComet { will-change: transform; }
   .con-flow {
     fill: none;
     stroke: url(#conGrad);
@@ -623,10 +624,10 @@
     filter: url(#conGlow);
     mix-blend-mode: multiply;
   }
-  .con-pulse { fill: var(--bronze); opacity: 0; }
-  .con-pulse-halo { fill: var(--bronze); opacity: 0; }
-  .con-tail { fill: var(--bronze); opacity: 0; }
-  #conGlow feGaussianBlur { stdDeviation: 2.2; }
+  .con-pulse { opacity: 0; }
+  .con-pulse-halo { opacity: 0; }
+  .con-tail { fill: #ffd27a; opacity: 0; }
+  .con-spark { fill: #ffcc60; opacity: 0; }
 
   .con-step {
     position: absolute; transform: translate(-50%,-50%);
@@ -671,18 +672,27 @@
     background: var(--pure);
   }
   .con-step.charged {
-    border-color: var(--bronze-light);
-    box-shadow: 0 24px 54px -25px rgba(156,107,63,0.58), 0 0 0 8px rgba(156,107,63,0.10);
-    transform: translate(-50%,-50%) scale(1.045);
+    border-color: rgba(255,214,100,0.85);
+    transform: translate(-50%,-50%) scale(1.048);
+    animation: cardFlash 0.85s var(--ease) forwards;
   }
   .con-step.charged::after {
     content: '';
     position: absolute;
-    inset: -9px;
-    border: 1px solid rgba(184,137,92,0.38);
+    inset: -10px;
+    border: 1.5px solid rgba(255,210,100,0.6);
     border-radius: inherit;
     pointer-events: none;
-    animation: impulseRing 0.9s var(--ease) forwards;
+    animation: impulseRing 0.75s var(--ease) forwards;
+  }
+  .con-step.charged::before {
+    content: '';
+    position: absolute;
+    inset: -22px;
+    border: 1px solid rgba(184,137,92,0.28);
+    border-radius: calc(var(--r-md) + 12px);
+    pointer-events: none;
+    animation: impulseRing 0.95s 0.08s var(--ease) forwards;
   }
   .con-step.pinged {
     border-color: var(--bronze-light);
@@ -690,8 +700,14 @@
     transform: translate(-50%,-50%) scale(1.06);
   }
   @keyframes impulseRing {
-    0% { opacity: 0.72; transform: scale(0.98); }
-    100% { opacity: 0; transform: scale(1.12); }
+    0%   { opacity: 0.85; transform: scale(0.95); border-color: rgba(255,210,100,0.8); }
+    40%  { opacity: 0.5;  transform: scale(1.06); border-color: rgba(184,137,92,0.5); }
+    100% { opacity: 0;    transform: scale(1.22); border-color: rgba(156,107,63,0); }
+  }
+  @keyframes cardFlash {
+    0%   { box-shadow: 0 0 0 0 rgba(255,220,120,0.0), 0 22px 50px -26px rgba(156,107,63,0.55), 0 0 0 5px rgba(156,107,63,0.06); }
+    18%  { box-shadow: 0 0 38px 14px rgba(255,210,100,0.38), 0 22px 60px -22px rgba(156,107,63,0.75), 0 0 0 9px rgba(255,200,80,0.2); }
+    100% { box-shadow: 0 22px 50px -26px rgba(156,107,63,0.55), 0 0 0 5px rgba(156,107,63,0.06); }
   }
 
   @media (max-width: 880px) {
@@ -1308,20 +1324,41 @@
         <svg class="con-svg" id="conSvg" preserveAspectRatio="none">
           <defs>
             <linearGradient id="conGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="var(--bronze-light)"/>
-              <stop offset="100%" stop-color="var(--bronze)"/>
+              <stop offset="0%"   stop-color="#f5c870" stop-opacity="0.9"/>
+              <stop offset="50%"  stop-color="#c98a3a" stop-opacity="0.75"/>
+              <stop offset="100%" stop-color="#9c6b3f" stop-opacity="0.5"/>
             </linearGradient>
-            <filter id="conGlow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="2.4" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            <filter id="conGlow" x="-400%" y="-400%" width="900%" height="900%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur14"/>
+              <feGaussianBlur in="SourceGraphic" stdDeviation="5"  result="blur5"/>
+              <feColorMatrix in="blur14" type="matrix"
+                values="1.4 0.6 0 0 0  0.8 0.5 0 0 0  0.2 0.1 0 0 0  0 0 0 2.2 0"
+                result="tinted"/>
+              <feMerge>
+                <feMergeNode in="tinted"/>
+                <feMergeNode in="blur5"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
             </filter>
+            <radialGradient id="cometCore" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#fffff0" stop-opacity="1"/>
+              <stop offset="45%"  stop-color="#ffd878" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#c98a3a" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="cometAura" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#ffeaa0" stop-opacity="0.55"/>
+              <stop offset="60%"  stop-color="#c98a3a" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#9c6b3f" stop-opacity="0"/>
+            </radialGradient>
           </defs>
           <path class="con-thread" id="conThread" d=""></path>
           <path class="con-trail" id="conTrail" d=""></path>
           <path class="con-flow" id="conFlow" d=""></path>
+          <g id="conSparks"></g>
           <g id="conComet" filter="url(#conGlow)">
-            <circle class="con-pulse-halo" id="conHalo" r="13"></circle>
-            <circle class="con-pulse" id="conPulse" r="4.5"></circle>
+            <circle id="conAura"  r="28" fill="url(#cometAura)" opacity="0"></circle>
+            <circle class="con-pulse-halo" id="conHalo" r="14" fill="url(#cometCore)" opacity="0"></circle>
+            <circle class="con-pulse" id="conPulse" r="5" fill="#fffff0" opacity="0"></circle>
           </g>
         </svg>
         <div class="con-step sz-lg" data-x="20" data-y="62"><span class="con-num">Шаг 01</span><div class="con-title">Снова слышать себя под слоем «надо»</div></div>
@@ -1841,29 +1878,88 @@
     (function() {
       const journey = document.getElementById('journey');
       if (!journey) return;
-      const svg = document.getElementById('conSvg');
+      const svg    = document.getElementById('conSvg');
       const thread = document.getElementById('conThread');
-      const trail = document.getElementById('conTrail');
-      const flow = document.getElementById('conFlow');
-      const pulse = document.getElementById('conPulse');
-      const halo = document.getElementById('conHalo');
-      const comet = document.getElementById('conComet');
-      const steps = Array.from(journey.querySelectorAll('.con-step'));
+      const trail  = document.getElementById('conTrail');
+      const flow   = document.getElementById('conFlow');
+      const pulse  = document.getElementById('conPulse');
+      const halo   = document.getElementById('conHalo');
+      const comet  = document.getElementById('conComet');
+      const aura   = document.getElementById('conAura');
+      const sparksG = document.getElementById('conSparks');
+      const steps  = Array.from(journey.querySelectorAll('.con-step'));
 
-      // meteor tail: particles that lag behind the head along the thread
-      const TAIL = 9, TAIL_GAP = 13;
+      // ── tail particles ─────────────────────────────────────────────────────
+      const TAIL = 8, TAIL_GAP = 11;
       const tail = [];
       for (let i = 0; i < TAIL; i++) {
         const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         c.setAttribute('class', 'con-tail');
         const f = 1 - i / TAIL;
-        c.dataset.r = (1.2 + 3.6 * f).toFixed(2);
-        c.dataset.o = (0.55 * f * f).toFixed(3);
-        comet.insertBefore(c, halo);
+        c.dataset.r = (0.8 + 3.8 * f).toFixed(2);
+        c.dataset.o = (0.65 * f * f).toFixed(3);
+        comet.insertBefore(c, aura);
         tail.push(c);
       }
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const mobile = () => window.matchMedia('(max-width: 880px)').matches;
+
+      // ── spark pool ─────────────────────────────────────────────────────────
+      const SPARK_POOL = 22;
+      const sparks = [];
+      for (let i = 0; i < SPARK_POOL; i++) {
+        const s = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        s.setAttribute('class', 'con-spark');
+        s.setAttribute('r', '2.2');
+        s.setAttribute('opacity', '0');
+        sparksG.appendChild(s);
+        sparks.push({ el: s, active: false, x: 0, y: 0, vx: 0, vy: 0, life: 0, maxLife: 0 });
+      }
+      let nextSpark = 0;
+      let lastSparkLen = -999;
+      const SPARK_INTERVAL = 18; // px between spark emissions
+
+      function emitSpark(x, y) {
+        const sp = sparks[nextSpark % SPARK_POOL];
+        nextSpark++;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 0.9 + Math.random() * 1.4;
+        sp.active = true;
+        sp.x  = x; sp.y = y;
+        sp.vx = Math.cos(angle) * speed;
+        sp.vy = Math.sin(angle) * speed;
+        sp.life = 0;
+        sp.maxLife = 22 + Math.random() * 18;
+        sp.el.setAttribute('r', (1.4 + Math.random() * 1.8).toFixed(1));
+        sp.el.setAttribute('cx', x); sp.el.setAttribute('cy', y);
+        sp.el.setAttribute('opacity', '0.85');
+      }
+
+      function tickSparks() {
+        for (const sp of sparks) {
+          if (!sp.active) continue;
+          sp.life++;
+          sp.x += sp.vx; sp.y += sp.vy;
+          sp.vy += 0.04; // subtle gravity
+          sp.vx *= 0.96; sp.vy *= 0.96;
+          const o = Math.max(0, 0.85 * (1 - sp.life / sp.maxLife));
+          sp.el.setAttribute('cx', sp.x.toFixed(2));
+          sp.el.setAttribute('cy', sp.y.toFixed(2));
+          sp.el.setAttribute('opacity', o.toFixed(3));
+          if (sp.life >= sp.maxLife) { sp.active = false; sp.el.setAttribute('opacity', '0'); }
+        }
+      }
+
+      function clearSparks() {
+        sparks.forEach(sp => { sp.active = false; sp.el.setAttribute('opacity', '0'); });
+        lastSparkLen = -999;
+      }
+
+      // head positioned by CSS transform on the group → GPU compositor path
+      pulse.setAttribute('cx', '0'); pulse.setAttribute('cy', '0');
+      halo.setAttribute('cx',  '0'); halo.setAttribute('cy',  '0');
+      if (aura) { aura.setAttribute('cx', '0'); aura.setAttribute('cy', '0'); }
+
+      const reduce  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const mobile  = () => window.matchMedia('(max-width: 880px)').matches;
 
       steps.forEach(s => { s.style.left = s.dataset.x + '%'; s.style.top = s.dataset.y + 'px'; });
 
@@ -1882,10 +1978,26 @@
         steps.forEach(s => io.observe(s));
       }
 
-      let nodeLens = [];   // cumulative path length at each node
-      let totalLen = 0;
-      let raf = null;
+      // ── path pre-sampling ──────────────────────────────────────────────────
+      // getPointAtLength() is expensive (~50µs/call in SVG).
+      // We call it SAMPLES times once on rebuild(), then every frame
+      // is a plain array index — O(1), zero DOM interaction.
+      const SAMPLES = 2000;
+      let pathSamples = [];   // [{x,y}] evenly spaced along the path
+      let nodeLens    = [];   // cumulative path length at each step center
+      let totalLen    = 0;
+      let raf         = null;
       let introPlayed = false;
+
+      function ptAtLen(len) {
+        if (!pathSamples.length || totalLen < 1) return { x: 0, y: 0 };
+        const idx = Math.max(0, Math.min(SAMPLES, Math.round(len / totalLen * SAMPLES)));
+        return pathSamples[idx];
+      }
+
+      function moveComet(x, y) {
+        comet.style.transform = `translate(${x}px,${y}px)`;
+      }
 
       function nodeCenters() {
         const r = journey.getBoundingClientRect();
@@ -1895,19 +2007,13 @@
         });
       }
 
-      // Catmull-Rom -> cubic bezier smooth path through points
       function buildPath(pts) {
         if (pts.length < 2) return '';
         let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
         for (let i = 0; i < pts.length - 1; i++) {
-          const p0 = pts[i - 1] || pts[i];
-          const p1 = pts[i];
-          const p2 = pts[i + 1];
-          const p3 = pts[i + 2] || pts[i + 1];
-          const cp1x = p1.x + (p2.x - p0.x) / 6;
-          const cp1y = p1.y + (p2.y - p0.y) / 6;
-          const cp2x = p2.x - (p3.x - p1.x) / 6;
-          const cp2y = p2.y - (p3.y - p1.y) / 6;
+          const p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || pts[i+1];
+          const cp1x = p1.x + (p2.x - p0.x) / 6, cp1y = p1.y + (p2.y - p0.y) / 6;
+          const cp2x = p2.x - (p3.x - p1.x) / 6, cp2y = p2.y - (p3.y - p1.y) / 6;
           d += ` C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
         }
         return d;
@@ -1918,39 +2024,45 @@
         const r = journey.getBoundingClientRect();
         svg.setAttribute('viewBox', `0 0 ${r.width} ${r.height}`);
         const pts = nodeCenters();
-        const d = buildPath(pts);
+        const d   = buildPath(pts);
         thread.setAttribute('d', d);
         trail.setAttribute('d', d);
         flow.setAttribute('d', d);
         totalLen = thread.getTotalLength();
-        // cumulative length at each node via per-segment temp paths
+
+        // pre-sample — the only place getPointAtLength() is allowed
+        pathSamples = [];
+        for (let i = 0; i <= SAMPLES; i++) {
+          const pt = thread.getPointAtLength(totalLen * i / SAMPLES);
+          pathSamples.push({ x: pt.x, y: pt.y });
+        }
+
+        // cumulative lengths at each node
         nodeLens = [0];
         let acc = 0;
         const tmp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         for (let i = 0; i < pts.length - 1; i++) {
-          const p0 = pts[i - 1] || pts[i];
-          const p1 = pts[i];
-          const p2 = pts[i + 1];
-          const p3 = pts[i + 2] || pts[i + 1];
+          const p0 = pts[i-1] || pts[i], p1 = pts[i], p2 = pts[i+1], p3 = pts[i+2] || pts[i+1];
           const cp1x = p1.x + (p2.x - p0.x) / 6, cp1y = p1.y + (p2.y - p0.y) / 6;
           const cp2x = p2.x - (p3.x - p1.x) / 6, cp2y = p2.y - (p3.y - p1.y) / 6;
           tmp.setAttribute('d', `M ${p1.x} ${p1.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`);
           acc += tmp.getTotalLength();
           nodeLens.push(acc);
         }
-        trail.style.strokeDasharray = totalLen;
+
+        trail.style.strokeDasharray  = totalLen;
         trail.style.strokeDashoffset = totalLen;
-        flow.style.strokeDasharray = `${Math.min(180, totalLen * 0.18)} ${totalLen}`;
-        flow.style.strokeDashoffset = 0;
-        flow.style.opacity = '0';
+        flow.style.strokeDasharray   = `${Math.min(180, totalLen * 0.18)} ${totalLen}`;
+        flow.style.strokeDashoffset  = 0;
+        flow.style.opacity           = '0';
       }
 
       function setTrail(toLen) {
         trail.style.strokeDashoffset = Math.max(0, totalLen - toLen);
       }
-
       function setComet(opacity) {
         comet.style.opacity = opacity;
+        if (aura) aura.style.opacity = opacity > 0 ? Math.min(1, opacity * 1.2) : '0';
       }
 
       function resetJourney({ keepTrail = false } = {}) {
@@ -1959,68 +2071,89 @@
         if (raf) { cancelAnimationFrame(raf); raf = null; }
         setComet(0);
         pulse.style.opacity = '0'; halo.style.opacity = '0';
-        flow.style.opacity = '0';
+        flow.style.opacity  = '0';
         tail.forEach(c => c.setAttribute('opacity', '0'));
+        clearSparks();
       }
 
       function chargeStep(index) {
         const step = steps[index];
         if (!step) return;
+        step.classList.remove('charged');
+        void step.offsetWidth; // force reflow so animation restarts
         step.classList.add('con-in', 'active', 'transmitted', 'charged');
-        window.setTimeout(() => step.classList.remove('charged'), 920);
+        window.setTimeout(() => step.classList.remove('charged'), 950);
       }
 
       function firePulse(fromLen, toLen, options = {}) {
         const { onArrive, clear = false, leaveActive = false, speed = 2.7 } = options;
         if (raf) cancelAnimationFrame(raf);
         if (clear) steps.forEach(s => s.classList.remove('active', 'pinged', 'charged', 'transmitted'));
-        const dist = Math.abs(toLen - fromLen);
-        // slower, weightier travel — energy that flows rather than snaps
+        const dist     = Math.abs(toLen - fromLen);
         const duration = Math.min(7600, Math.max(780, dist * speed));
-        const dir = toLen >= fromLen ? 1 : -1;
-        const t0 = performance.now();
-        let chargedTo = -1;
+        const dir      = toLen >= fromLen ? 1 : -1;
+        const t0       = performance.now();
+        let chargedTo  = -1;
         setComet(1);
-        pulse.style.opacity = '1'; halo.style.opacity = '0.34';
-        flow.style.opacity = '0.42';
-        tail.forEach(c => { c.setAttribute('r', c.dataset.r); });
+        pulse.style.opacity = '1'; halo.style.opacity = '0.82';
+        flow.style.opacity  = '0.52';
+        tail.forEach(c => c.setAttribute('r', c.dataset.r));
+        clearSparks();
+
         function tick(now) {
-          const p = Math.min((now - t0) / duration, 1);
-          // smooth ease-in-out so it accelerates then eases into the node
-          const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          const p       = Math.min((now - t0) / duration, 1);
+          const e       = p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3) / 2;
           const headLen = fromLen + (toLen - fromLen) * e;
-          const pt = thread.getPointAtLength(headLen);
+
+          // ── O(1) array lookups replace getPointAtLength() ─────────────────
+          const headPt = ptAtLen(headLen);
+          moveComet(headPt.x, headPt.y);
+
           setTrail(Math.max(fromLen, headLen));
           flow.style.strokeDashoffset = -headLen;
-          pulse.setAttribute('cx', pt.x); pulse.setAttribute('cy', pt.y);
-          halo.setAttribute('cx', pt.x); halo.setAttribute('cy', pt.y);
-          while (chargedTo + 1 < nodeLens.length && nodeLens[chargedTo + 1] <= headLen + 10) {
-            chargedTo += 1;
-            chargeStep(chargedTo);
+
+          // ── spark emission ────────────────────────────────────────────────
+          if (headLen - lastSparkLen >= SPARK_INTERVAL) {
+            emitSpark(headPt.x, headPt.y);
+            if (Math.random() > 0.55) emitSpark(headPt.x, headPt.y); // burst pair
+            lastSparkLen = headLen;
           }
-          // tail particles lag behind along the path
+          tickSparks();
+
+          while (chargedTo + 1 < nodeLens.length && nodeLens[chargedTo + 1] <= headLen + 10) {
+            chargedTo++;
+            chargeStep(chargedTo);
+            // burst sparks at each node arrival
+            const nodePt = ptAtLen(nodeLens[chargedTo]);
+            for (let b = 0; b < 6; b++) emitSpark(nodePt.x, nodePt.y);
+          }
+
           for (let i = 0; i < TAIL; i++) {
             const tl = headLen - dir * (i + 1) * TAIL_GAP;
-            const c = tail[i];
+            const c  = tail[i];
             if ((dir > 0 && tl <= fromLen) || (dir < 0 && tl >= fromLen)) {
               c.setAttribute('opacity', '0');
               continue;
             }
-            const tp = thread.getPointAtLength(Math.max(0, Math.min(totalLen, tl)));
+            const tp = ptAtLen(Math.max(0, Math.min(totalLen, tl)));
             c.setAttribute('cx', tp.x); c.setAttribute('cy', tp.y);
             c.setAttribute('opacity', c.dataset.o);
           }
-          // gentle fade-out near arrival
-          const fade = p > 0.82 ? (1 - p) / 0.18 : 1;
+
+          const fade = p > 0.84 ? (1 - p) / 0.16 : 1;
           setComet(fade);
-          flow.style.opacity = String(0.42 * fade);
+          pulse.style.opacity = String(fade);
+          halo.style.opacity  = String(0.82 * fade);
+          flow.style.opacity  = String(0.52 * fade);
+
           if (p < 1) {
             raf = requestAnimationFrame(tick);
           } else {
             setComet(0);
             pulse.style.opacity = '0'; halo.style.opacity = '0';
-            flow.style.opacity = '0';
+            flow.style.opacity  = '0';
             tail.forEach(c => c.setAttribute('opacity', '0'));
+            clearSparks();
             if (!leaveActive) steps.forEach(s => s.classList.remove('charged'));
             if (onArrive) onArrive();
           }
@@ -2041,32 +2174,22 @@
         if (reduce) return;
         const next = steps[i + 1];
         firePulse(0, nodeLens[i], {
-          clear: false,
-          leaveActive: true,
-          speed: 1.85,
+          clear: false, leaveActive: true, speed: 1.85,
           onArrive: () => {
-            if (next) {
-              next.classList.add('pinged');
-              setTimeout(() => next.classList.remove('pinged'), 520);
-            }
+            if (next) { next.classList.add('pinged'); setTimeout(() => next.classList.remove('pinged'), 520); }
           }
         });
       }
 
       steps.forEach((step, i) => step.addEventListener('mouseenter', () => activate(i)));
-
-      journey.addEventListener('mouseleave', () => {
-        resetJourney();
-      });
+      journey.addEventListener('mouseleave', () => resetJourney());
 
       const playIntro = () => {
         if (introPlayed) return;
         introPlayed = true;
         steps.forEach(s => s.classList.add('con-in'));
         if (mobile() || reduce) {
-          steps.forEach((s, i) => {
-            setTimeout(() => s.classList.add('con-in', 'active', 'transmitted'), i * 115);
-          });
+          steps.forEach((s, i) => setTimeout(() => s.classList.add('con-in', 'active', 'transmitted'), i * 115));
           return;
         }
         rebuild();
@@ -2075,10 +2198,7 @@
 
       const journeyIO = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            window.setTimeout(playIntro, 220);
-            journeyIO.unobserve(journey);
-          }
+          if (entry.isIntersecting) { window.setTimeout(playIntro, 220); journeyIO.unobserve(journey); }
         });
       }, { threshold: 0.24 });
       journeyIO.observe(journey);
@@ -2087,12 +2207,9 @@
       window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(rebuild, 180); });
       window.addEventListener('load', () => {
         rebuild();
-        if (window.location.hash === '#journey') {
-          window.setTimeout(playIntro, 260);
-        }
+        if (window.location.hash === '#journey') window.setTimeout(playIntro, 260);
       });
       rebuild();
-      // fonts may shift sizes; rebuild once settled
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(rebuild, 60));
     })();
 
