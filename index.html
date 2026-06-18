@@ -1026,66 +1026,25 @@
     .burger { display: block; }
     .mobile-bar { display: flex; }
     .header-inner { margin-top: 10px; }
-    section { padding: 90px 0; }
-    .hero { padding: 68px 0 60px; }
+    /* ── Общие отступы ────────────────────────────────────────── */
+    section { padding: 64px 0; }
+
+    /* ── Hero ──────────────────────────────────────────────────── */
+    .hero { padding: 70px 0 48px; }
     .hero-copy,
     .hero-copy > *,
     .hero-media { width: 100%; max-width: 100%; }
-    .hero-badge {
-      white-space: normal;
-      line-height: 1.35;
-      align-items: center;
-      font-size: 10.5px;
-      letter-spacing: 0.11em;
-      padding: 9px 14px;
-    }
-    .hero h1, .hero .lead, .hero .lead-italic {
-      max-width: 100%;
-      overflow-wrap: anywhere;
-      word-break: normal;
-    }
-    .hero h1 .h-line { white-space: normal; }
-    .hero-actions { align-items: stretch; }
-    .hero-actions .btn { max-width: 100%; justify-content: center; }
-    .program-opening .section-head { margin-bottom: 26px; }
-    .program-lead { font-size: 17px; }
-    .pull-quote { margin-top: 28px; padding-left: 20px; }
-    .program-proof { min-height: 320px; border-radius: var(--r-md); }
-    .program-proof::after { inset: 12px; border-radius: calc(var(--r-md) - 6px); }
-    .proof-caption { left: 22px; right: 22px; bottom: 22px; }
-    .deliverables { padding: 28px 0; }
-    .deliverables-grid { grid-template-columns: 1fr; }
-    .deliverable { padding: 18px; }
-    .program-moments { gap: 14px; }
-    .moment-card p { font-size: 22px; left: 20px; right: 20px; }
-    .journey-head { text-align: left; margin-bottom: 38px; }
-    .journey-head p { margin-left: 0; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 18px; flex-wrap: wrap; }
-    .stat { flex: 1 1 92px; min-width: 0; }
-    .stat .label { max-width: 100%; font-size: 12px; overflow-wrap: break-word; }
-    .hero-float { right: 12px; }
-    .program-item { grid-template-columns: 40px 1fr auto; gap: 16px; padding: 22px 8px; }
-    .program-item .bg-num { display: none; }
-    .scroll-hint { display: none; }
-    .obj-panel { padding: 0; }
-    .obj-mark { font-size: 80px; }
 
-    /* Фото: наверх, на всю ширину */
+    /* Фото: первым, внутри контейнера, все 4 угла скруглены */
     .signature { display: none; }
-    .hero-media {
-      order: -1;
-      margin: 0 -22px 28px;
-      width: calc(100% + 44px);
-    }
+    .hero-media { order: -1; margin-bottom: 24px; }
     .hero-visual {
       width: 100%;
       max-width: 100%;
       aspect-ratio: unset;
       height: auto;
       margin: 0;
-      border-radius: 0 0 22px 22px;
+      border-radius: 18px;
     }
     .hero-visual img {
       position: static;
@@ -1093,31 +1052,93 @@
       height: auto;
       object-fit: initial;
       display: block;
+      border-radius: 18px;
     }
 
-    /* Параллакс сброс — на мобильном трансформы отключены через JS */
-    [data-parallax] { transform: none !important; will-change: auto; }
+    /* Текст героя */
+    .hero-badge {
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: 0.10em;
+      padding: 8px 14px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 8vw, 40px);
+      margin-bottom: 16px;
+      overflow-wrap: anywhere;
+    }
+    .hero h1 .h-line { white-space: normal; }
+    .hero .lead { font-size: 15px; margin-bottom: 10px; }
+    .hero .lead-italic { display: none; }
+    .hero-actions {
+      align-items: stretch;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .hero-actions .btn { max-width: 100%; justify-content: center; }
+    .hero-actions .btn-link { text-align: center; border-bottom: none; color: var(--stone); font-size: 13px; padding: 6px 0; }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line-soft);
+    }
+    .stat { flex: none; text-align: center; padding: 0 8px; }
+    .stat .figure { font-size: 28px; }
+    .stat .label { font-size: 11px; max-width: 100%; overflow-wrap: break-word; }
+    .stat + .stat { border-left: 1px solid var(--line-soft); }
 
-    /* Лотус на мобильном работает как фон, а не отдельный высокий блок */
-    .author-section { padding-top: 120px; }
-    .mono-visual-wrap { top: 80px; width: 360px; transform: translate(-50%, 0); opacity: 0.34; }
-    .mono-visual { max-width: 260px; }
-    .cries { padding-left: 16px; font-size: 18px; line-height: 1.62; }
-    .mono-head { font-size: 31px; }
+    /* ── Автор / Монолог ────────────────────────────────────────── */
+    .author-section { padding-top: 100px; }
+    .mono-visual-wrap { top: 80px; width: 300px; transform: translate(-50%, 0); opacity: 0.28; }
+    .mono-visual { max-width: 240px; }
+    .mono-head { font-size: 28px; line-height: 1.12; }
+    .cries { padding-left: 14px; font-size: 17px; line-height: 1.6; }
 
-    /* Шаги программы — одинаковый размер */
-    .con-step.sz-lg,
-    .con-step.sz-md,
-    .con-step.sz-sm { padding: 20px 20px 20px 18px; }
-    .con-step.sz-lg .con-title,
-    .con-step.sz-md .con-title,
-    .con-step.sz-sm .con-title { font-size: 17px; }
+    /* ── Программа ─────────────────────────────────────────────── */
+    .program-opening .section-head { margin-bottom: 22px; }
+    .program-lead { font-size: 16px; }
+    .pull-quote { margin-top: 22px; padding-left: 18px; }
+    .program-proof { min-height: 280px; border-radius: var(--r-md); }
+    .program-proof::after { inset: 10px; border-radius: calc(var(--r-md) - 5px); }
+    .proof-caption { left: 18px; right: 18px; bottom: 18px; }
+    .deliverables { padding: 22px 0; }
+    .deliverables-grid { grid-template-columns: 1fr; }
+    .deliverable { padding: 16px; }
+    .program-moments { gap: 12px; }
+    .moment-card p { font-size: 20px; left: 18px; right: 18px; }
+    .program-item { grid-template-columns: 36px 1fr auto; gap: 14px; padding: 18px 6px; }
+    .program-item .bg-num { display: none; }
 
-    /* Новые блоки — в одну колонку на мобильном */
+    /* ── Путь (constellation) ──────────────────────────────────── */
+    .journey-head { text-align: left; margin-bottom: 30px; }
+    .journey-head p { margin-left: 0; }
+    .con-step.sz-lg, .con-step.sz-md, .con-step.sz-sm { padding: 18px 18px 18px 16px; }
+    .con-step.sz-lg .con-title, .con-step.sz-md .con-title, .con-step.sz-sm .con-title { font-size: 16px; }
+
+    /* ── Отзывы / Тарифы ───────────────────────────────────────── */
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .hero-float { right: 12px; }
+
+    /* ── Новые блоки ────────────────────────────────────────────── */
     .cred-grid { grid-template-columns: 1fr; }
     .doubts-grid { grid-template-columns: 1fr; }
     .doubt-card.doubt-wide { grid-column: auto; }
-    .guarantee-card { padding: 40px 26px 36px; }
+    .guarantee-card { padding: 36px 22px 32px; }
+    .obj-panel { padding: 0; }
+    .obj-mark { font-size: 72px; }
+    .obj-q { font-size: clamp(22px, 5.5vw, 34px); margin-bottom: 36px; }
+    .obj-stop { font-size: clamp(32px, 8vw, 52px); }
+    .obj-final { font-size: clamp(24px, 5vw, 36px); }
+
+    /* ── UI прочее ─────────────────────────────────────────────── */
+    .scroll-hint { display: none; }
+    [data-parallax] { transform: none !important; will-change: auto; }
   }
 </style>
 </head>
