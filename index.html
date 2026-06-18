@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Авторский курс Вселены Мастер: 9 трек-сессий о внутренней опоре, женской природе и возвращении к своему сценарию жизни.">
+<meta property="og:title" content="Вселена Мастер — Сценарий счастливой женщины">
+<meta property="og:description" content="От «я устала быть удобной» — к «мне можно быть счастливой». 9 трек-сессий, доступ навсегда и бережный путь к себе.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="vselena_portrait.jpg">
 <title>Вселена Мастер — Сценарий счастливой женщины</title>
+<link rel="icon" href="favicon.ico">
 <!-- Style: Editorial / Luxury Premium + Motion | Palette: Warm cream + bronze | Fonts: Cormorant Garamond + Manrope -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -283,7 +289,8 @@
     z-index: 0; pointer-events: none;
     filter: blur(10px);
   }
-  .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px; align-items: center; }
+  .hero-grid { display: grid; grid-template-columns: 1.14fr 0.86fr; gap: 62px; align-items: start; }
+  .hero-copy, .hero-media { min-width: 0; }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 10px;
     background: var(--bronze-tint); color: var(--bronze-dark);
@@ -292,8 +299,9 @@
   }
   .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--bronze); animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{ box-shadow: 0 0 0 0 rgba(156,107,63,0.5);} 50%{ box-shadow: 0 0 0 6px rgba(156,107,63,0);} }
-  .hero h1 { font-size: clamp(48px, 6.4vw, 86px); margin-bottom: 30px; }
+  .hero h1 { font-size: clamp(40px, 3.65vw, 52px); max-width: 760px; margin-bottom: 30px; }
   .hero h1 em { font-style: italic; font-weight: 400; color: var(--bronze); }
+  .hero h1 .h-line { display: block; white-space: nowrap; }
   .hero .lead { font-size: 18px; color: var(--ink-soft); max-width: 500px; margin-bottom: 18px; }
   .hero .lead-italic { font-family: var(--font-display); font-style: italic; font-size: clamp(19px,2.1vw,24px); color: var(--ink); max-width: 500px; margin-bottom: 40px; line-height: 1.5; }
   .hero-actions { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
@@ -301,11 +309,13 @@
   .stat .figure { font-family: var(--font-display); font-size: 44px; font-weight: 600; line-height: 1; margin-bottom: 6px; }
   .stat .label { font-size: 13px; color: var(--stone); max-width: 130px; }
 
-  .hero-media { position: relative; }
+  .hero-media { position: relative; margin-top: 72px; }
   .hero-visual {
     position: relative; aspect-ratio: 4/5; border-radius: var(--r-lg); overflow: hidden;
     background: var(--warm-white);
     border: 1px solid var(--line-soft); will-change: transform; box-shadow: var(--shadow-md);
+    transform: translate3d(0,0,0);
+    transition: box-shadow 0.45s var(--ease);
   }
   .hero-visual img {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -364,8 +374,8 @@
   .section-head p { font-size: 18px; color: var(--ink-soft); margin-top: 22px; }
 
   /* ===== Monologue ===== */
-  .author-section { background: var(--warm-white); }
-  .mono { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 70px; align-items: center; }
+  .author-section { background: var(--warm-white); overflow: hidden; }
+  .mono { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 70px; align-items: center; position: relative; }
   .mono-visual-wrap { position: sticky; top: 120px; }
   /* Lotus stage — larger, intentional "frame" of action */
   .mono-visual {
@@ -437,16 +447,182 @@
   .why-body em { font-style: italic; color: var(--bronze); }
 
   /* ===== Program ===== */
-  .program-lead { font-size: 19px; color: var(--ink-soft); max-width: 700px; margin-bottom: 40px; }
-  .pull-quote { border-left: 2px solid var(--bronze); padding: 4px 0 4px 28px; margin: 0 0 60px; max-width: 640px; }
+  .program-opening {
+    display: grid;
+    grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+    gap: 56px;
+    align-items: stretch;
+    margin-bottom: 86px;
+  }
+  .program-opening .section-head {
+    max-width: none;
+    margin-bottom: 34px;
+  }
+  .program-lead { font-size: 20px; color: var(--ink-soft); max-width: 780px; margin-bottom: 0; }
+  .pull-quote { border-left: 2px solid var(--bronze); padding: 4px 0 4px 28px; margin: 34px 0 0; max-width: 760px; }
   .pull-quote .pq-text { font-family: var(--font-display); font-style: italic; font-size: clamp(20px,2.4vw,28px); line-height: 1.55; color: var(--ink-soft); margin-bottom: 16px; }
   .pull-quote .pq-name { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); }
+  .program-proof {
+    position: relative;
+    min-height: 430px;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    border: 1px solid var(--line-soft);
+    background: var(--paper);
+    box-shadow: var(--shadow-md);
+    transform: translate3d(0,0,0);
+    will-change: transform;
+    transition: box-shadow 0.45s var(--ease);
+  }
+  .program-proof::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 24% 18%, rgba(255,245,226,0.72), transparent 22%),
+      radial-gradient(circle at 74% 30%, rgba(184,137,92,0.38), transparent 28%),
+      linear-gradient(145deg, rgba(86,62,43,0.96), rgba(156,107,63,0.86) 52%, rgba(33,28,23,0.78));
+    transform: scale(1.02);
+  }
+  .program-proof::after {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(247,243,236,0.48);
+    border-radius: calc(var(--r-lg) - 10px);
+    pointer-events: none;
+  }
+  .proof-caption {
+    position: absolute;
+    left: 28px;
+    right: 28px;
+    bottom: 28px;
+    z-index: 2;
+    color: var(--paper);
+  }
+  .proof-caption .eyebrow { color: var(--bronze-light); display: block; margin-bottom: 12px; }
+  .proof-caption p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(24px, 2.6vw, 34px);
+    line-height: 1.2;
+    max-width: 420px;
+  }
+  .deliverables {
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: 28px;
+    align-items: stretch;
+    margin: 0 0 72px;
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+    padding: 34px 0;
+  }
+  .deliverables-lead {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+  }
+  .deliverables-lead h3 {
+    font-family: var(--font-display);
+    font-size: clamp(29px, 3vw, 42px);
+    font-weight: 500;
+    line-height: 1.08;
+  }
+  .deliverables-lead h3 em { color: var(--bronze); font-style: italic; }
+  .deliverables-lead p { color: var(--ink-soft); font-size: 16.5px; max-width: 420px; }
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .deliverable {
+    background: rgba(247,243,236,0.72);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-sm);
+    padding: 20px 20px 18px;
+  }
+  .deliverable strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .deliverable span { display: block; color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
+  .program-moments {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 0 0 86px;
+  }
+  .moment-card {
+    position: relative;
+    min-height: 190px;
+    overflow: hidden;
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-md);
+    background: var(--paper);
+    box-shadow: var(--shadow-sm);
+  }
+  .moment-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--moment-bg);
+    opacity: 0.98;
+  }
+  .moment-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 22%, rgba(33,28,23,0.6));
+  }
+  .moment-card p {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    z-index: 2;
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-size: 25px;
+    font-style: italic;
+    line-height: 1.12;
+  }
+  .moment-card:nth-child(1) { --moment-bg: radial-gradient(circle at 24% 20%, rgba(255,245,226,0.82), transparent 24%), radial-gradient(circle at 78% 72%, rgba(33,28,23,0.38), transparent 28%), linear-gradient(135deg, #9c6b3f, #4f3a2b); }
+  .moment-card:nth-child(2) { --moment-bg: radial-gradient(circle at 30% 18%, rgba(255,245,226,0.85), transparent 26%), linear-gradient(135deg, #b8895c, #5d4a3b); }
+  .moment-card:nth-child(3) { --moment-bg: radial-gradient(circle at 72% 30%, rgba(247,243,236,0.72), transparent 24%), linear-gradient(135deg, #7d5530, #d7b98f); }
+  .journey-head {
+    max-width: 840px;
+    margin: 0 auto 58px;
+    text-align: center;
+  }
+  .journey-head .eyebrow { display: block; margin-bottom: 18px; }
+  .journey-head h2 { font-size: clamp(36px, 4.6vw, 60px); }
+  .journey-head p {
+    max-width: 640px;
+    margin: 20px auto 0;
+    font-size: 17px;
+    color: var(--ink-soft);
+  }
 
   /* ===== Constellation journey ===== */
-  .constellation { position: relative; height: 1180px; }
+  .constellation { position: relative; height: 1180px; max-width: 1040px; margin: 0 auto; }
   .con-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: visible; }
   .con-thread { fill: none; stroke: var(--line); stroke-width: 2; stroke-linecap: round; }
   .con-trail { fill: none; stroke: url(#conGrad); stroke-width: 2.5; stroke-linecap: round; transition: stroke-dashoffset 0.6s var(--ease); }
+  .con-flow {
+    fill: none;
+    stroke: url(#conGrad);
+    stroke-width: 8;
+    stroke-linecap: round;
+    opacity: 0;
+    filter: url(#conGlow);
+    mix-blend-mode: multiply;
+  }
   .con-pulse { fill: var(--bronze); opacity: 0; }
   .con-pulse-halo { fill: var(--bronze); opacity: 0; }
   .con-tail { fill: var(--bronze); opacity: 0; }
@@ -461,6 +637,7 @@
     will-change: transform;
   }
   .con-step.con-in { opacity: 1; }
+  .constellation:target .con-step { opacity: 1; }
   .con-step .con-num {
     font-family: var(--font-display); font-style: italic; font-size: 15px; color: var(--stone);
     display: block; margin-bottom: 6px; letter-spacing: 0.04em;
@@ -489,10 +666,32 @@
   @media (prefers-reduced-motion: reduce) { .con-step.active { animation: none; } }
   .con-step.active .con-num { color: var(--bronze); }
   .con-step.active .con-title { color: var(--bronze-dark); }
+  .con-step.transmitted {
+    border-color: rgba(156,107,63,0.58);
+    background: var(--pure);
+  }
+  .con-step.charged {
+    border-color: var(--bronze-light);
+    box-shadow: 0 24px 54px -25px rgba(156,107,63,0.58), 0 0 0 8px rgba(156,107,63,0.10);
+    transform: translate(-50%,-50%) scale(1.045);
+  }
+  .con-step.charged::after {
+    content: '';
+    position: absolute;
+    inset: -9px;
+    border: 1px solid rgba(184,137,92,0.38);
+    border-radius: inherit;
+    pointer-events: none;
+    animation: impulseRing 0.9s var(--ease) forwards;
+  }
   .con-step.pinged {
     border-color: var(--bronze-light);
     box-shadow: 0 0 0 7px rgba(156,107,63,0.12), var(--shadow-md);
     transform: translate(-50%,-50%) scale(1.06);
+  }
+  @keyframes impulseRing {
+    0% { opacity: 0.72; transform: scale(0.98); }
+    100% { opacity: 0; transform: scale(1.12); }
   }
 
   @media (max-width: 880px) {
@@ -511,7 +710,7 @@
       content: ''; position: absolute; left: -21px; top: 39px; bottom: -16px; width: 2px;
       background: var(--line); z-index: 1;
     }
-    .con-step:hover, .con-step.active, .con-step.pinged { transform: none !important; }
+    .con-step:hover, .con-step.active, .con-step.pinged, .con-step.charged { transform: none !important; }
     .con-step.active::before { background: var(--bronze); border-color: var(--bronze); }
   }
 
@@ -533,7 +732,8 @@
   .t-card .spot {
     position: absolute; width: 240px; height: 240px; border-radius: 50%;
     background: radial-gradient(circle, rgba(156,107,63,0.14), transparent 70%);
-    pointer-events: none; opacity: 0; transition: opacity 0.4s; transform: translate(-50%,-50%);
+    left: 0; top: 0; pointer-events: none; opacity: 0; transition: opacity 0.4s;
+    transform: translate3d(0,0,0) translate(-50%,-50%); will-change: transform;
   }
   .t-card:hover .spot { opacity: 1; }
   .t-card:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -28px rgba(33,28,23,0.22); }
@@ -572,7 +772,8 @@
   .price-card .spot {
     position: absolute; width: 260px; height: 260px; border-radius: 50%;
     background: radial-gradient(circle, rgba(156,107,63,0.16), transparent 70%);
-    pointer-events: none; opacity: 0; transition: opacity 0.4s; transform: translate(-50%,-50%);
+    left: 0; top: 0; pointer-events: none; opacity: 0; transition: opacity 0.4s;
+    transform: translate3d(0,0,0) translate(-50%,-50%); will-change: transform;
   }
   .price-card:hover .spot { opacity: 1; }
   .price-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(33,28,23,0.25); }
@@ -750,6 +951,12 @@
   .reveal[data-delay="1"] { transition-delay: 0.1s; }
   .reveal[data-delay="2"] { transition-delay: 0.2s; }
   .reveal[data-delay="3"] { transition-delay: 0.3s; }
+  section:target .reveal,
+  section:target .reveal-words {
+    opacity: 1;
+    transform: none;
+  }
+  section:target .reveal-words .word > span { transform: none; }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -759,10 +966,17 @@
 
   /* ===== Responsive ===== */
   @media (max-width: 980px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 50px; width: 100%; }
+    .hero-media { margin-top: 0; }
     .hero-visual { max-width: 440px; }
+    .program-opening { grid-template-columns: 1fr; gap: 34px; margin-bottom: 62px; }
+    .program-proof { min-height: 380px; }
+    .deliverables { grid-template-columns: 1fr; gap: 24px; margin-bottom: 64px; }
+    .program-moments { grid-template-columns: 1fr; margin-bottom: 64px; }
+    .moment-card { min-height: 170px; }
     .mono { grid-template-columns: 1fr; gap: 40px; }
-    .mono-visual-wrap { position: static; }
+    .mono-visual-wrap { position: absolute; inset: 0 auto auto 50%; width: min(92vw, 520px); transform: translate(-50%, 20px); z-index: 0; pointer-events: none; opacity: 0.42; }
+    .mono > .reveal:not(.mono-visual-wrap) { position: relative; z-index: 1; }
     .mono-visual { max-width: 440px; margin: 0 auto; }
     .testimonials-grid { grid-template-columns: 1fr 1fr; }
     .bonus-grid { grid-template-columns: 1fr; }
@@ -771,6 +985,26 @@
   }
   @media (max-width: 760px) {
     .container, .header-inner { padding-left: 22px; padding-right: 22px; }
+    .container,
+    .mono,
+    .program-opening,
+    .program-copy,
+    .pull-quote,
+    .cries,
+    .why-body,
+    .section-head {
+      min-width: 0;
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
+    .display,
+    .mono-head,
+    .pull-quote .pq-text,
+    .cries,
+    .why-body p,
+    .program-lead {
+      overflow-wrap: anywhere;
+    }
     .nav-links { display: none; }
     .header-cta { display: none; }
     .burger { display: block; }
@@ -778,9 +1012,53 @@
     .header-inner { margin-top: 10px; }
     section { padding: 90px 0; }
     .hero { padding: 140px 0 80px; }
+    .hero-copy,
+    .hero-copy > *,
+    .hero-media { width: 100%; max-width: 100%; }
+    .hero-copy > .hero-badge,
+    .hero-copy > h1,
+    .hero-copy > p,
+    .hero-copy > .hero-actions,
+    .hero-copy > .hero-stats {
+      width: min(100%, 326px);
+      max-width: min(100%, 326px);
+    }
+    .hero-badge {
+      width: min(100%, 326px);
+      max-width: min(100%, 326px);
+      white-space: normal;
+      line-height: 1.35;
+      align-items: flex-start;
+      font-size: 10.5px;
+      letter-spacing: 0.11em;
+      padding: 9px 14px;
+    }
+    .hero h1, .hero .lead, .hero .lead-italic {
+      max-width: 326px;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+    .hero h1 .h-line { white-space: normal; }
+    .hero-actions { align-items: stretch; }
+    .hero-actions .btn { max-width: 100%; justify-content: center; }
+    .program-opening .section-head { margin-bottom: 26px; }
+    .program-lead { font-size: 17px; }
+    .pull-quote { margin-top: 28px; padding-left: 20px; }
+    .program-proof { min-height: 320px; border-radius: var(--r-md); }
+    .program-proof::after { inset: 12px; border-radius: calc(var(--r-md) - 6px); }
+    .proof-caption { left: 22px; right: 22px; bottom: 22px; }
+    .deliverables { padding: 28px 0; }
+    .deliverables-grid { grid-template-columns: 1fr; }
+    .deliverable { padding: 18px; }
+    .program-moments { gap: 14px; }
+    .moment-card p { font-size: 22px; left: 20px; right: 20px; }
+    .journey-head { text-align: left; margin-bottom: 38px; }
+    .journey-head p { margin-left: 0; }
     .pricing-grid { grid-template-columns: 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .hero-stats { gap: 18px; flex-wrap: wrap; }
+    .stat { flex: 1 1 92px; min-width: 0; }
+    .stat .label { max-width: 100%; font-size: 12px; overflow-wrap: break-word; }
     .hero-float { right: 12px; }
     .program-item { grid-template-columns: 40px 1fr auto; gap: 16px; padding: 22px 8px; }
     .program-item .bg-num { display: none; }
@@ -791,12 +1069,17 @@
     /* Signature: не выходит за края на мобильном */
     .signature { position: static; display: inline-block; margin-top: 16px; left: auto; bottom: auto; }
     .hero-media { text-align: center; }
+    .hero-visual { max-width: 326px; margin-left: 0; }
 
     /* Параллакс сброс — на мобильном трансформы отключены через JS */
     [data-parallax] { transform: none !important; will-change: auto; }
 
-    /* Лотус меньше на мобильном */
+    /* Лотус на мобильном работает как фон, а не отдельный высокий блок */
+    .author-section { padding-top: 120px; }
+    .mono-visual-wrap { top: 80px; width: 360px; transform: translate(-50%, 0); opacity: 0.34; }
     .mono-visual { max-width: 260px; }
+    .cries { padding-left: 16px; font-size: 18px; line-height: 1.62; }
+    .mono-head { font-size: 31px; }
 
     /* Шаги программы — одинаковый размер */
     .con-step.sz-lg,
@@ -829,7 +1112,7 @@
         <a href="#faq">Вопросы</a>
       </nav>
       <a href="#pricing" class="btn btn-primary header-cta" data-magnetic><span>Записаться</span></a>
-      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
     </div>
   </header>
 
@@ -842,7 +1125,7 @@
     <a href="#faq" class="m-link">Вопросы</a>
     <div class="m-cta">
       <a href="#pricing" class="btn btn-primary"><span>Записаться со скидкой −30%</span></a>
-      <div class="m-contacts"><a href="#">Telegram</a><a href="#">Instagram</a><a href="#">Написать</a></div>
+      <div class="m-contacts"><a href="mailto:info@mastervselena.ru?subject=%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%20%D0%BA%D1%83%D1%80%D1%81%D0%B5">Написать</a><a href="#footer">Контакты</a></div>
     </div>
   </nav>
 
@@ -859,9 +1142,9 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <span class="hero-badge reveal"><span class="dot"></span> Авторский курс Вселены Мастер</span>
-          <h1 class="display reveal-words">От <em>«я устала быть удобной»</em> — к <em>«мне можно быть счастливой»</em></h1>
+          <h1 class="display reveal-words"><span class="h-line">От <em>«я устала быть удобной»</em></span><span class="h-line">— к <em>«мне можно быть</em></span><span class="h-line"><em>счастливой»</em></span></h1>
           <p class="lead reveal" data-delay="2">Не лекции. 9 живых трек-сессий вглубь себя: внутренняя опора, женская сладость и твой собственный сценарий — написанный твоей рукой.</p>
-          <p class="lead-italic reveal" data-delay="2">Запусти свою жизнь заново — со сценарием, написанным твоей рукой. Я рядом на каждом шаге.</p>
+          <p class="lead-italic reveal" data-delay="2">Начни возвращаться к жизни, написанной твоей рукой. Я буду вести тебя шаг за шагом.</p>
           <div class="hero-actions reveal" data-delay="3">
             <a href="#pricing" class="btn btn-primary" data-magnetic><span>Записаться со скидкой&nbsp;−30%</span> <span class="arrow">→</span></a>
             <a href="#program" class="btn btn-link">Что внутри программы</a>
@@ -873,11 +1156,11 @@
           </div>
         </div>
         <div class="hero-media reveal" data-delay="2">
-          <div class="hero-visual" data-parallax="-0.06" data-tilt>
+          <div class="hero-visual" data-tilt>
             <img src="vselena_portrait.jpg" alt="Вселена Мастер" loading="eager">
             <div class="shine"></div>
           </div>
-          <div class="signature" data-parallax="0.12">Вселена</div>
+          <div class="signature">Вселена</div>
         </div>
       </div>
     </div>
@@ -966,7 +1249,7 @@
             <p>И у меня не было человека, который сказал бы: вот как устроена жизнь. Вот закон. Вот практика. Иди.</p>
             <p>Я собирала всё по крупицам — через боль, через ошибки, через тысячи женщин, которые приходили опустошёнными — и уходили собой.</p>
             <p>У меня не было проводника — того, кто показал бы мне куда идти. Но у тебя он есть.</p>
-            <p><strong>Я рядом.</strong></p>
+            <p><strong>Я проведу тебя этим путём.</strong></p>
           </div>
         </div>
       </div>
@@ -976,16 +1259,50 @@
   <!-- PROGRAM -->
   <section id="program">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">О программе</span>
-        <p class="program-lead">Не лекции. 9 живых трек-сессий — чтобы распаковать себя, отпустить, начать желать и разжечь тот огонь, который так тщательно в тебе гасили все эти годы.</p>
+      <div class="program-opening">
+        <div class="program-copy reveal">
+          <div class="section-head">
+            <span class="eyebrow">О программе</span>
+            <h2 class="display reveal-words">Это не курс, где тебе читают лекции. <em>Это маршрут возвращения к себе.</em></h2>
+            <p class="program-lead">9 живых трек-сессий — чтобы услышать себя, отпустить чужое, снова начать желать и вернуть тот огонь, который годами приходилось прятать.</p>
+          </div>
+          <div class="pull-quote">
+            <div class="pq-text">«Я не объясняю, как стать счастливой. Я знаю — это невозможно объяснить. Это можно только прожить.»</div>
+            <div class="pq-name">Вселена Мастер</div>
+          </div>
+        </div>
+        <div class="program-proof reveal" data-delay="1" data-tilt>
+          <div class="proof-caption">
+            <span class="eyebrow">Личная проводница</span>
+            <p>Не сухая теория, а живое сопровождение: бережный темп, ясные шаги и пространство, где можно быть собой.</p>
+          </div>
+        </div>
       </div>
-      <div class="pull-quote reveal">
-        <div class="pq-text">«Я не объясняю, как стать счастливой. Я знаю — это невозможно объяснить. Это можно только прожить.»</div>
-        <div class="pq-name">Вселена Мастер</div>
+
+      <div class="deliverables reveal">
+        <div class="deliverables-lead">
+          <span class="eyebrow">Что ты покупаешь</span>
+          <h3>Не обещание мгновенного чуда. <em>Конкретный путь и материалы.</em></h3>
+          <p>Чтобы было ясно, что открывается после оплаты и как это встроить в свою жизнь.</p>
+        </div>
+        <div class="deliverables-grid">
+          <div class="deliverable"><strong>9 трек-сессий</strong><span>Живая работа с темами курса: опора, желания, сценарии, женская природа.</span></div>
+          <div class="deliverable"><strong>Записи навсегда</strong><span>Можно идти в своём темпе и возвращаться к практикам тогда, когда нужно.</span></div>
+          <div class="deliverable"><strong>Старт 1 июля</strong><span>Доступ открывается к началу потока, материалы остаются в кабинете.</span></div>
+          <div class="deliverable"><strong>2 бонуса</strong><span>Ключ на «Седьмое небо» и цифровой талисман силы как поддержка пути.</span></div>
+        </div>
       </div>
-      <div class="section-head reveal" style="margin-bottom:48px">
+
+      <div class="program-moments">
+        <div class="moment-card reveal"><p>Сначала ты слышишь себя</p></div>
+        <div class="moment-card reveal" data-delay="1"><p>Потом возвращаешь желание</p></div>
+        <div class="moment-card reveal" data-delay="2"><p>И выбираешь свою жизнь</p></div>
+      </div>
+
+      <div class="journey-head reveal">
+        <span class="eyebrow">Сценарий пути</span>
         <h2 class="display reveal-words">Путь, выстроенный <em>шаг за шагом</em></h2>
+        <p>От первого честного «я устала» — к возвращению к себе настоящей.</p>
       </div>
       <div class="constellation" id="journey">
         <svg class="con-svg" id="conSvg" preserveAspectRatio="none">
@@ -1001,6 +1318,7 @@
           </defs>
           <path class="con-thread" id="conThread" d=""></path>
           <path class="con-trail" id="conTrail" d=""></path>
+          <path class="con-flow" id="conFlow" d=""></path>
           <g id="conComet" filter="url(#conGlow)">
             <circle class="con-pulse-halo" id="conHalo" r="13"></circle>
             <circle class="con-pulse" id="conPulse" r="4.5"></circle>
@@ -1045,7 +1363,7 @@
     <div class="container">
       <div class="section-head center reveal">
         <span class="eyebrow">Отзывы участниц</span>
-        <h2 class="display reveal-words">Они уже <em>изменили свою жизнь</em></h2>
+        <h2 class="display reveal-words">Они уже <em>начали возвращаться к себе</em></h2>
       </div>
       <div class="testimonials-grid">
         <div class="t-card reveal" data-spot>
@@ -1063,13 +1381,13 @@
         <div class="t-card reveal" data-delay="2" data-spot>
           <div class="spot"></div>
           <div class="rtag">💪 Смелый шаг</div>
-          <div class="quote">«Я изменилась сама, очень изменилась. Сменила работу в 51 год — 30 лет стажа. Жизнь радует и расцветает благодаря практикам Вселены.»</div>
+          <div class="quote">«Я стала слышать себя иначе. В 51 год решилась на шаг, который долго откладывала, и почувствовала больше жизни внутри.»</div>
           <div class="t-author"><div class="avatar">К</div><div><div class="name">Катерина</div><div class="role">продолжает меняться</div></div></div>
         </div>
         <div class="t-card reveal" data-spot>
           <div class="spot"></div>
           <div class="rtag">🌱 Полгода</div>
-          <div class="quote">«Я вижу в себе колоссальные изменения. Стала увереннее, гармоничнее, уравновешеннее. Любима сама себе.»</div>
+          <div class="quote">«Я стала увереннее, спокойнее, внимательнее к себе. Будто внутри появилось место, где я могу быть любимой самой себе.»</div>
           <div class="t-author"><div class="avatar">Н</div><div><div class="name">НеоНилла</div><div class="role">полгода в клубе</div></div></div>
         </div>
         <div class="t-card reveal" data-delay="1" data-spot>
@@ -1081,14 +1399,14 @@
         <div class="t-card reveal" data-delay="2" data-spot>
           <div class="spot"></div>
           <div class="rtag">💫 Каждый день</div>
-          <div class="quote">«День за днём становлюсь самой собой — настоящей, смелой. Стала верить в себя и Бога. Жизнь становится всё лучше и гармоничнее.»</div>
+          <div class="quote">«День за днём я возвращаюсь к себе — настоящей, смелой. Стало больше доверия, опоры и внутренней тишины.»</div>
           <div class="t-author"><div class="avatar">Е</div><div><div class="name">Елена Ма</div><div class="role">участница клуба</div></div></div>
         </div>
       </div>
 
       <div class="reviews-total reveal">
         <div class="total-num">1000+</div>
-        <div class="total-text"><strong>женщин уже изменили свою жизнь</strong> рядом с Вселеной. Разные возрасты, разные точки старта — одно общее: они решились и пошли.</div>
+        <div class="total-text"><strong>1000+ женщин уже сделали шаг к себе</strong> вместе с Вселеной. Разные возрасты, разные точки старта — одно общее: они решились и пошли.</div>
       </div>
       <p class="reviews-disclaimer reveal">Здесь — личные переживания участниц. Опыт у каждой женщины свой, и результат зависит от неё самой.</p>
     </div>
@@ -1107,7 +1425,7 @@
         <div class="cred reveal" data-delay="2"><div class="cred-num">Президент фонда</div><div class="cred-label">системная работа, а не «эзотерика на коленке»</div></div>
         <div class="cred reveal"><div class="cred-num">4 книги</div><div class="cred-label">путь, собранный в слова</div></div>
         <div class="cred reveal" data-delay="1"><div class="cred-num">40+ стран</div><div class="cred-label">где проходят её практики</div></div>
-        <div class="cred reveal" data-delay="2"><div class="cred-num">Миллионы женщин</div><div class="cred-label">прошли через её программы</div></div>
+        <div class="cred reveal" data-delay="2"><div class="cred-num">Тысячи женщин</div><div class="cred-label">прошли через её программы и практики</div></div>
       </div>
       <p class="cred-final reveal">Я сама жила в чужом сценарии, и у меня не было проводника. У тебя он есть. <em>твоя Вселена ❤️</em></p>
     </div>
@@ -1126,7 +1444,7 @@
           <p>Дорого — годами платить собой. Это 5 831 ₽ в месяц, и доступ навсегда. А дорого — это откладывать себя ещё на один год.</p>
         </div>
         <div class="doubt-card reveal" data-delay="1">
-          <div class="doubt-q">«А вдруг не сработает»</div>
+          <div class="doubt-q">«А вдруг это не моё»</div>
           <p>У тебя есть 7 дней. Пройди первую сессию. Не твой путь — напиши нам, вернём всё до копейки. Ты рискуешь одним вечером.</p>
         </div>
         <div class="doubt-card reveal">
@@ -1139,7 +1457,7 @@
         </div>
         <div class="doubt-card doubt-wide reveal">
           <div class="doubt-q">«Эзотерика — я не верю»</div>
-          <p>Здесь нет магии вместо тебя. Твоя работа, твоя честность, твои шаги. Вселена — проводник, но идёшь ты сама. И результат даёшь себе тоже ты.</p>
+          <p>Здесь нет магии вместо тебя. Твоя работа, твоя честность, твои шаги. Вселена — проводник, но свои изменения ты проживаешь сама, шаг за шагом.</p>
         </div>
       </div>
     </div>
@@ -1172,7 +1490,7 @@
             <li><span class="check">✓</span> Доступ навсегда</li>
             <li><span class="check">✓</span> Доступ в сообщество</li>
           </ul>
-          <a href="#" class="btn btn-ghost">Оформить</a>
+          <a href="mailto:info@mastervselena.ru?subject=%D0%9E%D1%84%D0%BE%D1%80%D0%BC%D0%B8%D1%82%D1%8C%20%D0%BA%D1%83%D1%80%D1%81%20%D0%92%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D0%B9%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%BE%D0%B9" class="btn btn-ghost" data-track="checkout_full">Оформить</a>
         </div>
         <div class="price-card featured reveal" data-delay="1" data-spot>
           <div class="spot"></div>
@@ -1187,7 +1505,7 @@
             <li><span class="check">✓</span> Без переплат и процентов</li>
             <li><span class="check">✓</span> Заявка за 1–2 минуты</li>
           </ul>
-          <a href="#" class="btn btn-primary" data-magnetic><span>Оформить рассрочку</span> <span class="arrow">→</span></a>
+          <a href="mailto:info@mastervselena.ru?subject=%D0%9E%D1%84%D0%BE%D1%80%D0%BC%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D1%81%D1%81%D1%80%D0%BE%D1%87%D0%BA%D1%83%20%D0%BD%D0%B0%20%D0%BA%D1%83%D1%80%D1%81%20%D0%92%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D1%8B" class="btn btn-primary" data-magnetic data-track="checkout_installment"><span>Оформить рассрочку</span> <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -1233,20 +1551,20 @@
       </div>
       <div class="faq-wrap reveal">
         <div class="faq-item">
-          <button class="faq-q">Когда начинается обучение? <span class="icon">+</span></button>
-          <div class="faq-a"><p>Доступ открывается 1 июля. Но ты уже сделала самое важное — выбрала себя.</p></div>
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-1">Когда начинается обучение? <span class="icon">+</span></button>
+          <div class="faq-a" id="faq-a-1"><p>Доступ открывается 1 июля. Но ты уже сделала самое важное — выбрала себя.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">Можно ли оплатить частями? <span class="icon">+</span></button>
-          <div class="faq-a"><p>Да. Рассрочка на 12 месяцев, без переплат. Первый платёж — через месяц после оформления. Чтобы решение принималось из желания, а не из надрыва.</p></div>
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-2">Можно ли оплатить частями? <span class="icon">+</span></button>
+          <div class="faq-a" id="faq-a-2"><p>Да. Рассрочка на 12 месяцев, без переплат. Первый платёж — через месяц после оформления. Чтобы решение принималось из желания, а не из надрыва.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">Сколько действует доступ? <span class="icon">+</span></button>
-          <div class="faq-a"><p>Навсегда. Этот путь никуда не торопится. Ты сможешь возвращаться к нему столько раз, сколько нужно.</p></div>
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-3">Сколько действует доступ? <span class="icon">+</span></button>
+          <div class="faq-a" id="faq-a-3"><p>Навсегда. Этот путь никуда не торопится. Ты сможешь возвращаться к нему столько раз, сколько нужно.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">Что если возникнут вопросы? <span class="icon">+</span></button>
-          <div class="faq-a"><p>Напиши нам. Тебе ответят живые люди, которые знают этот путь.</p></div>
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-4">Что если возникнут вопросы? <span class="icon">+</span></button>
+          <div class="faq-a" id="faq-a-4"><p>Напиши нам. Тебе ответят живые люди, которые знают этот путь.</p></div>
         </div>
       </div>
     </div>
@@ -1260,26 +1578,26 @@
       <h2 class="reveal-words">Тебе <em>можно.</em></h2>
       <p class="cta-sub reveal" data-delay="1">Ты так долго ждала разрешения. Чтобы кто-то наконец сказал: тебе можно.</p>
       <p class="cta-sub reveal" data-delay="1">Так услышь от меня, моя хорошая: тебе можно. Можно хотеть, можно плакать, можно быть слабой, можно быть счастливой — прямо сейчас, из этой точки, такой как есть.</p>
-      <p class="cta-sub reveal" data-delay="2">Это разрешение всегда было твоим. Я просто иду рядом, чтобы ты вспомнила.</p>
+      <p class="cta-sub reveal" data-delay="2">Это разрешение всегда было твоим. Я помогу тебе вспомнить его и удержать в себе.</p>
       <p class="cta-deadline reveal" data-delay="2">Акция −30% действует до <strong>23:59 (мск) 18 июня</strong>. После — цена вырастет.</p>
       <a href="#pricing" class="btn btn-primary reveal" data-delay="2" data-magnetic><span>Я разрешаю себе быть счастливой</span></a>
-      <div class="note reveal" data-delay="2">Рассрочка · Доступ навсегда · Вселена рядом</div>
+      <div class="note reveal" data-delay="2">Рассрочка · Доступ навсегда · Бережное сопровождение</div>
       <p class="cta-sign reveal" data-delay="3">Пойдём, что скажешь?<br>С любовью, твоя Вселена ❤️</p>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer id="footer">
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
           <div class="logo">Все<span>лена</span></div>
-          <p>Пространство для роста, гармонии и счастливой жизни каждой женщины.</p>
+          <p>Авторское пространство Вселены Мастер для женщин, которые возвращаются к себе.</p>
         </div>
         <div class="footer-cols">
           <div class="footer-col"><h4>Навигация</h4><a href="#author">Об авторе</a><a href="#program">Программа</a><a href="#reviews">Отзывы</a><a href="#pricing">Тарифы</a></div>
-          <div class="footer-col"><h4>Контакты</h4><a href="#">Написать нам</a><a href="#">Telegram</a><a href="#">Instagram</a></div>
-          <div class="footer-col"><h4>Документы</h4><a href="#">Оферта</a><a href="#">Политика конфиденциальности</a></div>
+          <div class="footer-col"><h4>Контакты</h4><a href="mailto:info@mastervselena.ru?subject=%D0%92%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BE%20%D0%BA%D1%83%D1%80%D1%81%D0%B5">Написать нам</a><a href="mailto:info@mastervselena.ru?subject=Telegram%20%D0%92%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D1%8B">Telegram</a><a href="mailto:info@mastervselena.ru?subject=Instagram%20%D0%92%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D1%8B">Instagram</a></div>
+          <div class="footer-col"><h4>Документы</h4><a href="mailto:info@mastervselena.ru?subject=%D0%9E%D1%84%D0%B5%D1%80%D1%82%D0%B0">Оферта</a><a href="mailto:info@mastervselena.ru?subject=%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Политика конфиденциальности</a></div>
         </div>
       </div>
       <div class="footer-bottom"><div>© 2026 Вселена Мастер. Все права защищены.</div><div>Сделано с теплом</div></div>
@@ -1323,9 +1641,16 @@
     // ===== Mobile menu =====
     const burger = document.getElementById('burger');
     const mobileBar = document.getElementById('mobileBar');
-    function closeMenu() { document.body.classList.remove('menu-open'); }
-    burger.addEventListener('click', () => document.body.classList.toggle('menu-open'));
+    function syncMenuState() {
+      burger.setAttribute('aria-expanded', document.body.classList.contains('menu-open') ? 'true' : 'false');
+    }
+    function closeMenu() { document.body.classList.remove('menu-open'); syncMenuState(); }
+    burger.addEventListener('click', () => {
+      document.body.classList.toggle('menu-open');
+      syncMenuState();
+    });
     document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
+    syncMenuState();
 
     const heroEl = document.querySelector('.hero');
     window.addEventListener('scroll', () => {
@@ -1336,54 +1661,116 @@
     // ===== Magnetic buttons =====
     if (!reduce && window.matchMedia('(hover: hover)').matches) {
       document.querySelectorAll('[data-magnetic]').forEach(el => {
+        let rect, raf = null, tx = 0, ty = 0, cx = 0, cy = 0, active = false;
+        function render() {
+          raf = null;
+          const ease = active ? 0.22 : 0.16;
+          cx += (tx - cx) * ease;
+          cy += (ty - cy) * ease;
+          el.style.transform = `translate3d(${cx}px, ${cy}px, 0) translateY(-2px)`;
+          if (Math.abs(tx - cx) > 0.08 || Math.abs(ty - cy) > 0.08) raf = requestAnimationFrame(render);
+          else if (!active) el.style.transform = '';
+        }
+        function start() { if (!raf) raf = requestAnimationFrame(render); }
+        el.addEventListener('mouseenter', () => { rect = el.getBoundingClientRect(); active = true; });
         el.addEventListener('mousemove', e => {
-          const r = el.getBoundingClientRect();
-          const x = e.clientX - r.left - r.width/2;
-          const y = e.clientY - r.top - r.height/2;
-          el.style.transform = `translate(${x*0.25}px, ${y*0.35}px) translateY(-2px)`;
+          if (!rect) rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width/2;
+          const y = e.clientY - rect.top - rect.height/2;
+          tx = x * 0.18;
+          ty = y * 0.22;
+          start();
         });
-        el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+        el.addEventListener('mouseleave', () => {
+          active = false; rect = null; tx = 0; ty = 0; start();
+        });
       });
     }
 
     // ===== Spotlight on cards =====
     document.querySelectorAll('[data-spot]').forEach(card => {
       const spot = card.querySelector('.spot');
+      let rect, raf = null, sx = 0, sy = 0;
+      function renderSpot() {
+        raf = null;
+        spot.style.transform = `translate3d(${sx}px, ${sy}px, 0) translate(-50%,-50%)`;
+      }
+      card.addEventListener('mouseenter', () => { rect = card.getBoundingClientRect(); });
       card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        spot.style.left = (e.clientX - r.left) + 'px';
-        spot.style.top = (e.clientY - r.top) + 'px';
+        if (!rect) rect = card.getBoundingClientRect();
+        sx = e.clientX - rect.left;
+        sy = e.clientY - rect.top;
+        if (!raf) raf = requestAnimationFrame(renderSpot);
       });
+      card.addEventListener('mouseleave', () => { rect = null; });
     });
 
     // ===== Tilt =====
     if (!reduce && window.matchMedia('(hover: hover)').matches) {
       document.querySelectorAll('[data-tilt]').forEach(el => {
-        el.addEventListener('mousemove', e => {
-          const r = el.getBoundingClientRect();
-          const px = (e.clientX - r.left) / r.width - 0.5;
-          const py = (e.clientY - r.top) / r.height - 0.5;
-          el.style.transform = `perspective(900px) rotateY(${px*6}deg) rotateX(${-py*6}deg) scale(1.02)`;
+        let rect, raf = null, active = false;
+        let targetX = 0, targetY = 0, currentX = 0, currentY = 0, targetScale = 1, currentScale = 1;
+        const strength = el.classList.contains('mono-visual') ? 3.2 : 4.8;
+        function drawTilt() {
+          raf = null;
+          const ease = active ? 0.14 : 0.10;
+          currentX += (targetX - currentX) * ease;
+          currentY += (targetY - currentY) * ease;
+          currentScale += (targetScale - currentScale) * ease;
+          el.style.transform = `perspective(900px) rotateY(${currentX.toFixed(3)}deg) rotateX(${currentY.toFixed(3)}deg) scale(${currentScale.toFixed(4)}) translate3d(0,0,0)`;
+          const moving = Math.abs(targetX-currentX) + Math.abs(targetY-currentY) + Math.abs(targetScale-currentScale);
+          if (moving > 0.01) raf = requestAnimationFrame(drawTilt);
+          else if (!active) el.style.transform = '';
+        }
+        function startTilt() { if (!raf) raf = requestAnimationFrame(drawTilt); }
+        el.addEventListener('mouseenter', () => {
+          rect = el.getBoundingClientRect();
+          active = true;
+          targetScale = 1.018;
+          startTilt();
         });
-        el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+        el.addEventListener('mousemove', e => {
+          if (!rect) rect = el.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width - 0.5;
+          const py = (e.clientY - rect.top) / rect.height - 0.5;
+          targetX = px * strength;
+          targetY = -py * strength;
+          targetScale = 1.018;
+          startTilt();
+        });
+        el.addEventListener('mouseleave', () => {
+          active = false;
+          rect = null;
+          targetX = 0;
+          targetY = 0;
+          targetScale = 1;
+          startTilt();
+        });
       });
     }
 
     // ===== Parallax =====
     const parallaxEls = document.querySelectorAll('[data-parallax]');
     if (!reduce) {
-      window.addEventListener('scroll', () => {
+      let parallaxRaf = null;
+      function renderParallax() {
+        parallaxRaf = null;
         if (window.innerWidth <= 760) return;
         const y = window.scrollY;
         parallaxEls.forEach(el => {
           const speed = parseFloat(el.dataset.parallax);
-          el.style.transform = `translateY(${y * speed}px)`;
+          el.style.transform = `translate3d(0, ${y * speed}px, 0)`;
         });
+      }
+      window.addEventListener('scroll', () => {
+        if (!parallaxRaf) parallaxRaf = requestAnimationFrame(renderParallax);
       }, { passive: true });
     }
 
     // ===== Counters =====
     function animateCount(el) {
+      if (el.dataset.counted === 'true') return;
+      el.dataset.counted = 'true';
       const target = parseFloat(el.dataset.count);
       const decimals = parseInt(el.dataset.decimals || '0');
       const suffix = el.dataset.suffix || '';
@@ -1410,14 +1797,43 @@
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal, .reveal-words, [data-count]').forEach(el => io.observe(el));
+    function revealVisibleNow() {
+      document.querySelectorAll('.reveal:not(.in), .reveal-words:not(.in), [data-count]').forEach(el => {
+        const r = el.getBoundingClientRect();
+        const visible = r.top < window.innerHeight * 0.96 && r.bottom > 0;
+        if (!visible) return;
+        el.classList.add('in');
+        if (el.matches('[data-count]')) animateCount(el);
+        el.querySelectorAll && el.querySelectorAll('[data-count]').forEach(animateCount);
+        io.unobserve(el);
+      });
+    }
+    requestAnimationFrame(revealVisibleNow);
+    window.addEventListener('load', () => setTimeout(revealVisibleNow, 80));
+    window.addEventListener('hashchange', () => setTimeout(revealVisibleNow, 120));
 
     // ===== FAQ =====
     document.querySelectorAll('.faq-q').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.closest('.faq-item');
         const open = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          const q = i.querySelector('.faq-q');
+          if (q) q.setAttribute('aria-expanded', 'false');
+        });
         if (!open) item.classList.add('open');
+        btn.setAttribute('aria-expanded', !open ? 'true' : 'false');
+      });
+    });
+
+    // ===== Lightweight CTA analytics hook =====
+    document.querySelectorAll('a[href^="#pricing"], [data-track]').forEach(link => {
+      link.addEventListener('click', () => {
+        const eventName = link.dataset.track || 'cta_pricing_click';
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: eventName, text: link.textContent.trim() });
+        if (window.ym && window.YM_COUNTER_ID) window.ym(window.YM_COUNTER_ID, 'reachGoal', eventName);
       });
     });
 
@@ -1428,6 +1844,7 @@
       const svg = document.getElementById('conSvg');
       const thread = document.getElementById('conThread');
       const trail = document.getElementById('conTrail');
+      const flow = document.getElementById('conFlow');
       const pulse = document.getElementById('conPulse');
       const halo = document.getElementById('conHalo');
       const comet = document.getElementById('conComet');
@@ -1468,6 +1885,7 @@
       let nodeLens = [];   // cumulative path length at each node
       let totalLen = 0;
       let raf = null;
+      let introPlayed = false;
 
       function nodeCenters() {
         const r = journey.getBoundingClientRect();
@@ -1503,6 +1921,7 @@
         const d = buildPath(pts);
         thread.setAttribute('d', d);
         trail.setAttribute('d', d);
+        flow.setAttribute('d', d);
         totalLen = thread.getTotalLength();
         // cumulative length at each node via per-segment temp paths
         nodeLens = [0];
@@ -1521,6 +1940,9 @@
         }
         trail.style.strokeDasharray = totalLen;
         trail.style.strokeDashoffset = totalLen;
+        flow.style.strokeDasharray = `${Math.min(180, totalLen * 0.18)} ${totalLen}`;
+        flow.style.strokeDashoffset = 0;
+        flow.style.opacity = '0';
       }
 
       function setTrail(toLen) {
@@ -1531,15 +1953,36 @@
         comet.style.opacity = opacity;
       }
 
-      function firePulse(fromLen, toLen, onArrive) {
+      function resetJourney({ keepTrail = false } = {}) {
+        steps.forEach(s => s.classList.remove('active', 'pinged', 'charged', 'transmitted'));
+        if (!mobile() && !keepTrail) setTrail(0);
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+        setComet(0);
+        pulse.style.opacity = '0'; halo.style.opacity = '0';
+        flow.style.opacity = '0';
+        tail.forEach(c => c.setAttribute('opacity', '0'));
+      }
+
+      function chargeStep(index) {
+        const step = steps[index];
+        if (!step) return;
+        step.classList.add('con-in', 'active', 'transmitted', 'charged');
+        window.setTimeout(() => step.classList.remove('charged'), 920);
+      }
+
+      function firePulse(fromLen, toLen, options = {}) {
+        const { onArrive, clear = false, leaveActive = false, speed = 2.7 } = options;
         if (raf) cancelAnimationFrame(raf);
+        if (clear) steps.forEach(s => s.classList.remove('active', 'pinged', 'charged', 'transmitted'));
         const dist = Math.abs(toLen - fromLen);
         // slower, weightier travel — energy that flows rather than snaps
-        const duration = Math.min(1800, Math.max(680, dist * 2.7));
+        const duration = Math.min(7600, Math.max(780, dist * speed));
         const dir = toLen >= fromLen ? 1 : -1;
         const t0 = performance.now();
+        let chargedTo = -1;
         setComet(1);
-        pulse.style.opacity = '1'; halo.style.opacity = '0.3';
+        pulse.style.opacity = '1'; halo.style.opacity = '0.34';
+        flow.style.opacity = '0.42';
         tail.forEach(c => { c.setAttribute('r', c.dataset.r); });
         function tick(now) {
           const p = Math.min((now - t0) / duration, 1);
@@ -1547,8 +1990,14 @@
           const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
           const headLen = fromLen + (toLen - fromLen) * e;
           const pt = thread.getPointAtLength(headLen);
+          setTrail(Math.max(fromLen, headLen));
+          flow.style.strokeDashoffset = -headLen;
           pulse.setAttribute('cx', pt.x); pulse.setAttribute('cy', pt.y);
           halo.setAttribute('cx', pt.x); halo.setAttribute('cy', pt.y);
+          while (chargedTo + 1 < nodeLens.length && nodeLens[chargedTo + 1] <= headLen + 10) {
+            chargedTo += 1;
+            chargeStep(chargedTo);
+          }
           // tail particles lag behind along the path
           for (let i = 0; i < TAIL; i++) {
             const tl = headLen - dir * (i + 1) * TAIL_GAP;
@@ -1564,12 +2013,15 @@
           // gentle fade-out near arrival
           const fade = p > 0.82 ? (1 - p) / 0.18 : 1;
           setComet(fade);
+          flow.style.opacity = String(0.42 * fade);
           if (p < 1) {
             raf = requestAnimationFrame(tick);
           } else {
             setComet(0);
             pulse.style.opacity = '0'; halo.style.opacity = '0';
+            flow.style.opacity = '0';
             tail.forEach(c => c.setAttribute('opacity', '0'));
+            if (!leaveActive) steps.forEach(s => s.classList.remove('charged'));
             if (onArrive) onArrive();
           }
         }
@@ -1581,14 +2033,22 @@
           steps.forEach((s, k) => s.classList.toggle('active', k <= i));
           return;
         }
-        steps.forEach((s, k) => s.classList.toggle('active', k <= i));
-        setTrail(nodeLens[i]);
+        steps.forEach((s, k) => {
+          s.classList.toggle('active', k <= i);
+          s.classList.toggle('transmitted', k <= i);
+          s.classList.remove('charged', 'pinged');
+        });
         if (reduce) return;
         const next = steps[i + 1];
-        firePulse(nodeLens[i], nodeLens[Math.min(i + 1, steps.length - 1)], () => {
-          if (next) {
-            next.classList.add('pinged');
-            setTimeout(() => next.classList.remove('pinged'), 520);
+        firePulse(0, nodeLens[i], {
+          clear: false,
+          leaveActive: true,
+          speed: 1.85,
+          onArrive: () => {
+            if (next) {
+              next.classList.add('pinged');
+              setTimeout(() => next.classList.remove('pinged'), 520);
+            }
           }
         });
       }
@@ -1596,16 +2056,41 @@
       steps.forEach((step, i) => step.addEventListener('mouseenter', () => activate(i)));
 
       journey.addEventListener('mouseleave', () => {
-        steps.forEach(s => s.classList.remove('active', 'pinged'));
-        if (!mobile()) setTrail(0);
-        if (raf) { cancelAnimationFrame(raf); raf = null; }
-        pulse.style.opacity = '0'; halo.style.opacity = '0';
-        tail.forEach(c => c.setAttribute('opacity', '0'));
+        resetJourney();
       });
+
+      const playIntro = () => {
+        if (introPlayed) return;
+        introPlayed = true;
+        steps.forEach(s => s.classList.add('con-in'));
+        if (mobile() || reduce) {
+          steps.forEach((s, i) => {
+            setTimeout(() => s.classList.add('con-in', 'active', 'transmitted'), i * 115);
+          });
+          return;
+        }
+        rebuild();
+        firePulse(0, totalLen, { clear: true, leaveActive: true, speed: 5.6 });
+      };
+
+      const journeyIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            window.setTimeout(playIntro, 220);
+            journeyIO.unobserve(journey);
+          }
+        });
+      }, { threshold: 0.24 });
+      journeyIO.observe(journey);
 
       let rt;
       window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(rebuild, 180); });
-      window.addEventListener('load', rebuild);
+      window.addEventListener('load', () => {
+        rebuild();
+        if (window.location.hash === '#journey') {
+          window.setTimeout(playIntro, 260);
+        }
+      });
       rebuild();
       // fonts may shift sizes; rebuild once settled
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(rebuild, 60));
