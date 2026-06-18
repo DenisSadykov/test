@@ -1027,7 +1027,7 @@
     .mobile-bar { display: flex; }
     .header-inner { margin-top: 10px; }
     section { padding: 90px 0; }
-    .hero { padding: 140px 0 80px; }
+    .hero { padding: 68px 0 60px; }
     .hero-copy,
     .hero-copy > *,
     .hero-media { width: 100%; max-width: 100%; }
@@ -1072,11 +1072,22 @@
     .obj-panel { padding: 0; }
     .obj-mark { font-size: 80px; }
 
-    /* Signature: не выходит за края на мобильном */
-    .signature { position: static; display: inline-block; margin-top: 16px; left: auto; bottom: auto; }
-    .hero-media { text-align: center; }
-    .hero-visual { width: 100%; max-width: 326px; margin: 0 auto; }
-    .signature { display: inline-block; }
+    /* Фото: наверх, на всю ширину */
+    .signature { position: static; display: inline-block; margin-top: 14px; left: auto; bottom: auto; }
+    .hero-media {
+      order: -1;
+      margin: 0 -22px 32px;
+      width: calc(100% + 44px);
+      text-align: center;
+    }
+    .hero-visual {
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: unset;
+      height: 52vh;
+      margin: 0;
+      border-radius: 0 0 22px 22px;
+    }
 
     /* Параллакс сброс — на мобильном трансформы отключены через JS */
     [data-parallax] { transform: none !important; will-change: auto; }
