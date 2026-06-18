@@ -367,15 +367,67 @@
   .author-section { background: var(--warm-white); }
   .mono { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 70px; align-items: center; }
   .mono-visual-wrap { position: sticky; top: 120px; }
+  /* Lotus stage — larger, intentional "frame" of action */
   .mono-visual {
-    aspect-ratio: 3/4; border-radius: var(--r-lg); border: 1px solid var(--line-soft); position: relative; overflow: hidden;
-    background: linear-gradient(160deg, rgba(156,107,63,0.14), rgba(33,28,23,0.2)), var(--canvas);
-    box-shadow: var(--shadow-md);
-  }
-  .mono-visual::after {
-    content: 'фото автора'; position: absolute; inset: 0;
+    aspect-ratio: 5/6; position: relative; overflow: visible;
+    border: none; background: transparent; box-shadow: none;
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display); font-style: italic; color: var(--stone); font-size: 18px;
+  }
+  /* wider field of action — the SVG overflows its column so motes drift across/behind the text */
+  #lotusSvg { display: block; width: 150%; height: 150%; overflow: visible; }
+
+  /* petals unfurl from the center; --b is the per-ring bloom 0..1 */
+  .lotus-petal {
+    transform-box: fill-box; transform-origin: 50% 100%;
+    transform: rotate(var(--a)) scale(var(--b, 0));
+    transition: transform 0.7s var(--ease);
+    will-change: transform;
+  }
+  /* slow, continuous rotation of the whole flower */
+  .lotus-spin {
+    transform-box: view-box; transform-origin: 220px 300px;
+    animation: lotusSpin 88s linear infinite;
+  }
+  @keyframes lotusSpin { to { transform: rotate(360deg); } }
+  .lotus-breath {
+    transform-box: view-box; transform-origin: 220px 300px;
+    animation: lotusBreath 9s ease-in-out infinite alternate;
+  }
+  @keyframes lotusBreath {
+    0%   { transform: scale(0.985); }
+    100% { transform: scale(1.03); }
+  }
+  .lotus-core-glow {
+    transform-box: view-box; transform-origin: 220px 300px;
+    animation: coreBreath 4.2s ease-in-out infinite;
+  }
+  @keyframes coreBreath {
+    0%,100% { opacity: 0.55; transform: scale(0.92); }
+    50%     { opacity: 1;    transform: scale(1.12); }
+  }
+  .lotus-ripple {
+    transform-box: view-box; transform-origin: 220px 300px;
+    opacity: 0; animation: lotusRipple 6s ease-out infinite;
+  }
+  @keyframes lotusRipple {
+    0%   { transform: scale(0.25); opacity: 0; }
+    18%  { opacity: 0.5; }
+    100% { transform: scale(1.35); opacity: 0; }
+  }
+  .lotus-mote {
+    transform-box: view-box;
+    animation: lotusMote var(--dur, 7s) ease-in-out var(--del, 0s) infinite;
+    opacity: 0;
+  }
+  @keyframes lotusMote {
+    0%   { transform: translate(0, 0) scale(0.5); opacity: 0; }
+    15%  { opacity: var(--op, 0.9); }
+    80%  { opacity: var(--op, 0.9); }
+    100% { transform: translate(var(--dx, 0), var(--dy, -170px)) scale(1.1); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lotus-petal { transition: none; }
+    .lotus-spin, .lotus-breath, .lotus-core-glow, .lotus-ripple, .lotus-mote { animation: none; }
   }
   .mono-head { font-family: var(--font-display); font-weight: 500; font-size: clamp(30px,4.4vw,52px); line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 30px; }
   .mono-head em { font-style: italic; color: var(--bronze); }
@@ -501,7 +553,7 @@
   .reviews-total .total-text strong { color: var(--ink); font-weight: 700; }
 
   /* ===== Partnership ===== */
-  .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; }
+  .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .pcell { background: var(--pure); border: 1px solid var(--line-soft); border-radius: var(--r-md); padding: 30px 28px; box-shadow: var(--shadow-sm); }
   .pcell-label { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bronze); margin-bottom: 12px; }
   .pcell p { font-size: 15px; color: var(--ink-soft); line-height: 1.7; }
@@ -513,7 +565,7 @@
   .pricing-note em { font-style: italic; color: var(--bronze); font-family: var(--font-display); font-size: 1.1em; }
   .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 880px; margin: 0 auto; }
   .price-card {
-    background: var(--pure); border: 1px solid var(--line-soft); border-radius: var(--r-lg); padding: 48px 40px;
+    background: var(--pure); border: 1px solid var(--line-soft); border-radius: var(--r-lg); padding: 64px 40px 48px;
     position: relative; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); overflow: hidden;
     box-shadow: var(--shadow-sm);
   }
@@ -526,7 +578,7 @@
   .price-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(33,28,23,0.25); }
   .price-card.featured { border: 1px solid var(--bronze); box-shadow: 0 30px 60px -34px rgba(156,107,63,0.5); }
   .price-card .tag {
-    position: absolute; top: -12px; left: 40px; background: var(--bronze); color: var(--pure);
+    position: absolute; top: 24px; left: 40px; background: var(--bronze); color: var(--pure);
     font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
     padding: 6px 16px; border-radius: 999px; z-index: 2;
   }
@@ -541,13 +593,42 @@
   .price-card ul li .check { color: var(--bronze); font-weight: 700; flex-shrink: 0; }
   .price-card .btn { width: 100%; justify-content: center; position: relative; }
 
-  /* ===== Objection ===== */
-  #objection { background: var(--pure); }
-  .obj-q { font-family: var(--font-display); font-style: italic; font-size: clamp(22px,2.8vw,32px); color: var(--stone); border-left: 2px solid var(--line); padding-left: 26px; margin-bottom: 36px; max-width: 640px; line-height: 1.4; }
-  .obj-a { max-width: 640px; }
-  .obj-a p { font-size: 17px; color: var(--ink-soft); margin-bottom: 14px; }
-  .obj-a strong { color: var(--ink); font-weight: 700; }
-  .obj-final { font-family: var(--font-display); font-style: italic; font-size: clamp(24px,3vw,38px); color: var(--ink); line-height: 1.3; margin-top: 28px; }
+  /* ===== Objection — centered dark manifesto panel ===== */
+  #objection { background: var(--canvas); }
+  .obj-panel {
+    position: relative; max-width: 1000px; margin: 0 auto;
+    background: var(--ink); color: var(--paper);
+    border-radius: var(--r-lg); padding: 84px 88px 78px;
+    overflow: hidden; box-shadow: var(--shadow-lg);
+  }
+  .obj-panel::before {
+    content: ''; position: absolute; width: 560px; height: 560px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(156,107,63,0.38), transparent 64%);
+    top: -200px; right: -180px; pointer-events: none;
+  }
+  .obj-mark {
+    position: absolute; top: 4px; left: 50px; z-index: 0;
+    font-family: var(--font-display); font-style: italic; font-size: 230px; line-height: 1;
+    color: rgba(184,137,92,0.16); pointer-events: none; user-select: none;
+  }
+  .obj-panel > * { position: relative; z-index: 1; }
+  .obj-panel .eyebrow { color: var(--bronze-light); display: block; margin-bottom: 30px; }
+  .obj-q {
+    font-family: var(--font-display); font-style: italic; font-size: clamp(24px,3.1vw,40px);
+    color: rgba(247,243,236,0.5); margin-bottom: 44px; max-width: 720px; line-height: 1.32;
+  }
+  .obj-a { max-width: 700px; }
+  .obj-stop {
+    font-family: var(--font-display); font-style: italic; font-size: clamp(24px,2.8vw,34px);
+    color: var(--paper); margin-bottom: 22px; line-height: 1.2;
+  }
+  .obj-a p { font-size: 17.5px; color: rgba(247,243,236,0.76); margin-bottom: 16px; line-height: 1.7; }
+  .obj-a strong { color: var(--paper); font-weight: 700; }
+  .obj-final {
+    font-family: var(--font-display); font-style: italic; font-size: clamp(28px,3.6vw,46px);
+    color: var(--bronze-light); line-height: 1.22; margin-top: 40px;
+    padding-top: 36px; border-top: 1px solid rgba(247,243,236,0.12);
+  }
 
   /* ===== FAQ ===== */
   .faq-wrap { max-width: 820px; margin: 0 auto; }
@@ -614,7 +695,7 @@
     .hero-visual { max-width: 440px; }
     .mono { grid-template-columns: 1fr; gap: 40px; }
     .mono-visual-wrap { position: static; }
-    .mono-visual { max-width: 360px; }
+    .mono-visual { max-width: 440px; margin: 0 auto; }
     .testimonials-grid { grid-template-columns: 1fr 1fr; }
     .bonus-grid { grid-template-columns: 1fr; }
     .partner-grid { grid-template-columns: 1fr; }
@@ -635,6 +716,8 @@
     .program-item { grid-template-columns: 40px 1fr auto; gap: 16px; padding: 22px 8px; }
     .program-item .bg-num { display: none; }
     .scroll-hint { display: none; }
+    .obj-panel { padding: 48px 26px 44px; border-radius: var(--r-md); }
+    .obj-mark { font-size: 150px; left: 20px; top: 8px; }
   }
 </style>
 </head>
@@ -721,7 +804,61 @@
     <div class="container">
       <div class="mono">
         <div class="mono-visual-wrap reveal">
-          <div class="mono-visual" data-tilt></div>
+          <div class="mono-visual" data-tilt>
+            <svg id="lotusSvg" viewBox="0 0 440 560" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <defs>
+                <radialGradient id="lotusAura" cx="50%" cy="54%" r="55%">
+                  <stop offset="0%"  stop-color="#9c6b3f" stop-opacity="0.22"/>
+                  <stop offset="45%" stop-color="#b8895c" stop-opacity="0.10"/>
+                  <stop offset="100%" stop-color="#9c6b3f" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="petGradA" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"  stop-color="#f6efe4"/>
+                  <stop offset="58%" stop-color="#d8b389"/>
+                  <stop offset="100%" stop-color="#bd8a55"/>
+                </linearGradient>
+                <linearGradient id="petGradB" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"  stop-color="#fff7ec"/>
+                  <stop offset="55%" stop-color="#e3bd92"/>
+                  <stop offset="100%" stop-color="#b8895c"/>
+                </linearGradient>
+                <linearGradient id="petGradC" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"  stop-color="#fffaf3"/>
+                  <stop offset="52%" stop-color="#edca9d"/>
+                  <stop offset="100%" stop-color="#c9924f"/>
+                </linearGradient>
+                <radialGradient id="lotusCore" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"  stop-color="#fff3da" stop-opacity="1"/>
+                  <stop offset="40%" stop-color="#ffe1b0" stop-opacity="0.85"/>
+                  <stop offset="100%" stop-color="#f0d9b5" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="lotusSoft" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="0.6"/>
+                </filter>
+              </defs>
+
+              <!-- aura / enlarged action frame -->
+              <ellipse cx="220" cy="300" rx="320" ry="340" fill="url(#lotusAura)"/>
+
+              <!-- water ripples -->
+              <g id="lotusRipples"></g>
+
+              <g class="lotus-spin">
+                <g class="lotus-breath">
+                  <!-- petal rings injected by JS -->
+                  <g id="ringA" class="lotus-ring"></g>
+                  <g id="ringB" class="lotus-ring"></g>
+                  <g id="ringC" class="lotus-ring"></g>
+                  <!-- glowing center -->
+                  <circle class="lotus-core-glow" cx="220" cy="300" r="92" fill="url(#lotusCore)"/>
+                  <g id="lotusSeeds"></g>
+                </g>
+              </g>
+
+              <!-- light motes radiating in every direction -->
+              <g id="lotusMotes"></g>
+            </svg>
+          </div>
         </div>
         <div class="reveal" data-delay="1">
           <h2 class="mono-head">Выйди из чужого сценария.<br><em>Напиши свой.</em></h2>
@@ -794,12 +931,12 @@
         <div class="bonus-card reveal">
           <div class="bonus-icon">🔑</div>
           <h4>Ключ на Седьмое небо</h4>
-          <p>Цифровой артефакт с практиками — то, что я использую сама каждый день.</p>
+          <p>Доступ в первую в мире цифровую art-shop галерею природного искусства «Седьмое небо». Здесь вековая сила Матери-Природы соединяется с высокими технологиями — чтобы поддерживать тебя в раскрытии самых разных сфер жизни. Каждый объект галереи уникальный — со своим Паспортом и серийным номером.</p>
         </div>
         <div class="bonus-card reveal" data-delay="1">
           <div class="bonus-icon">🎁</div>
           <h4>Цифровой талисман силы</h4>
-          <p>Индивидуально для каждой участницы.</p>
+          <p>Личный цифровой артефакт, который резонирует с твоей частотой и активирует нужную сферу жизни — деньги, здоровье, отношения, творчество. Работает с тем энергоцентром, где у тебя есть блоки, которые не дают двигаться вперёд.</p>
         </div>
         <div class="bonus-card reveal" data-delay="2">
           <div class="bonus-icon">∞</div>
@@ -944,16 +1081,17 @@
   <!-- OBJECTION -->
   <section id="objection">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="obj-panel reveal">
+        <span class="obj-mark" aria-hidden="true">«</span>
         <span class="eyebrow">Прежде чем закрыть страницу</span>
-      </div>
-      <div class="obj-q reveal">«Это дорого. Сначала разберусь с другим. Заслужу — потом».</div>
-      <div class="obj-a reveal" data-delay="1">
-        <p><strong>Остановись.</strong></p>
-        <p>Это и есть та самая программа. Та, которая всю жизнь говорит: <strong>сначала всем, потом себе.</strong></p>
-        <p>Я прошла десятки лет, чтобы собрать то, что ты получишь за 9 сессий.</p>
-        <p>Вопрос не в том, заслуживаешь ли ты.</p>
-        <div class="obj-final">Вопрос в том — сколько ещё ты готова ждать своей очереди.</div>
+        <div class="obj-q">«Это дорого. Сначала разберусь с другим. Заслужу — потом».</div>
+        <div class="obj-a">
+          <p class="obj-stop">Остановись.</p>
+          <p>Это и есть та самая программа. Та, которая всю жизнь говорит: <strong>сначала всем, потом себе.</strong></p>
+          <p>Я прошла десятки лет, чтобы собрать то, что ты получишь за 9 сессий.</p>
+          <p>Вопрос не в том, заслуживаешь ли ты.</p>
+          <div class="obj-final">Вопрос в том — сколько ещё ты готова ждать своей очереди.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1343,6 +1481,129 @@
       // fonts may shift sizes; rebuild once settled
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(rebuild, 60));
     })();
+
+    // ===== Blooming lotus — scroll-driven unfurl =====
+    (function() {
+      const svg = document.getElementById('lotusSvg');
+      if (!svg) return;
+      const NS = 'http://www.w3.org/2000/svg';
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const CX = 220, CY = 300;
+
+      // petal path: base at center (CX,CY), tip pointing up by `len`, max width `w`
+      function petalPath(len, w) {
+        return `M ${CX} ${CY}`
+          + ` C ${CX - w*0.55} ${CY - len*0.30}, ${CX - w*0.30} ${CY - len*0.80}, ${CX} ${CY - len}`
+          + ` C ${CX + w*0.30} ${CY - len*0.80}, ${CX + w*0.55} ${CY - len*0.30}, ${CX} ${CY}`
+          + ` Z`;
+      }
+
+      // rings: back → front (largest, palest → smallest, brightest)
+      const rings = [
+        { id: 'ringA', n: 8, offset: 0,    len: 188, w: 70, grad: 'petGradA', op: 0.92 },
+        { id: 'ringB', n: 8, offset: 22.5, len: 152, w: 58, grad: 'petGradB', op: 0.97 },
+        { id: 'ringC', n: 8, offset: 0,    len: 116, w: 46, grad: 'petGradC', op: 1    },
+      ];
+      const ringEls = [];
+      rings.forEach(r => {
+        const g = document.getElementById(r.id);
+        const d = petalPath(r.len, r.w);
+        for (let i = 0; i < r.n; i++) {
+          const path = document.createElementNS(NS, 'path');
+          path.setAttribute('class', 'lotus-petal');
+          path.setAttribute('d', d);
+          path.setAttribute('fill', `url(#${r.grad})`);
+          path.setAttribute('stroke', 'rgba(124,85,48,0.26)');
+          path.setAttribute('stroke-width', '0.8');
+          path.setAttribute('filter', 'url(#lotusSoft)');
+          path.style.setProperty('--a', (r.offset + i * (360 / r.n)) + 'deg');
+          path.style.opacity = r.op;
+          g.appendChild(path);
+        }
+        ringEls.push(g);
+      });
+
+      // seed dots on the glowing pod
+      const seeds = document.getElementById('lotusSeeds');
+      for (let i = 0; i < 7; i++) {
+        const ang = (i / 7) * Math.PI * 2 - Math.PI / 2;
+        const rr = i === 0 ? 0 : 13;
+        const c = document.createElementNS(NS, 'circle');
+        c.setAttribute('cx', CX + Math.cos(ang) * rr);
+        c.setAttribute('cy', CY + Math.sin(ang) * rr * 0.9 - 4);
+        c.setAttribute('r', 2.4);
+        c.setAttribute('fill', '#8a5f33');
+        c.setAttribute('opacity', '0.7');
+        seeds.appendChild(c);
+      }
+
+      // water ripples
+      const ripples = document.getElementById('lotusRipples');
+      for (let i = 0; i < 3; i++) {
+        const e = document.createElementNS(NS, 'ellipse');
+        e.setAttribute('class', 'lotus-ripple');
+        e.setAttribute('cx', CX); e.setAttribute('cy', CY);
+        e.setAttribute('rx', 150); e.setAttribute('ry', 158);
+        e.setAttribute('fill', 'none');
+        e.setAttribute('stroke', 'rgba(156,107,63,0.45)');
+        e.setAttribute('stroke-width', '1.2');
+        e.style.animationDelay = (i * 2) + 's';
+        ripples.appendChild(e);
+      }
+
+      // light motes radiating in every direction — "из каждой клетки" — drifting far across the field
+      const motes = document.getElementById('lotusMotes');
+      const palette = ['#9c6b3f', '#c49a6c', '#f0d9b5', '#ffe9c8'];
+      for (let i = 0; i < 26; i++) {
+        const c = document.createElementNS(NS, 'circle');
+        c.setAttribute('class', 'lotus-mote');
+        const ang = Math.random() * Math.PI * 2;          // any direction
+        const startR = 8 + Math.random() * 80;            // born around the bloom
+        const dist = 170 + Math.random() * 320;           // travels far → wide field
+        const curl = (Math.random() - 0.5) * 0.5;         // slight arc off the radial line
+        c.setAttribute('cx', (CX + Math.cos(ang) * startR).toFixed(1));
+        c.setAttribute('cy', (CY + Math.sin(ang) * startR).toFixed(1));
+        c.setAttribute('r', (0.8 + Math.random() * 2.4).toFixed(2));
+        c.setAttribute('fill', palette[(Math.random() * palette.length) | 0]);
+        c.style.setProperty('--dx', (Math.cos(ang + curl) * dist).toFixed(1) + 'px');
+        c.style.setProperty('--dy', (Math.sin(ang + curl) * dist).toFixed(1) + 'px');
+        c.style.setProperty('--dur', (6 + Math.random() * 5).toFixed(1) + 's');
+        c.style.setProperty('--del', (Math.random() * 7).toFixed(1) + 's');
+        c.style.setProperty('--op', (0.4 + Math.random() * 0.5).toFixed(2));
+        motes.appendChild(c);
+      }
+
+      // bloom control — staggered rings (back opens first)
+      function setBloom(p) {
+        const a = Math.max(0, Math.min(1, p * 1.12));
+        const b = Math.max(0, Math.min(1, (p - 0.12) * 1.32));
+        const c = Math.max(0, Math.min(1, (p - 0.26) * 1.55));
+        ringEls[0].style.setProperty('--b', a.toFixed(3));
+        ringEls[1].style.setProperty('--b', b.toFixed(3));
+        ringEls[2].style.setProperty('--b', c.toFixed(3));
+      }
+
+      if (reduce) { setBloom(1); return; }
+
+      const wrap = svg.closest('.mono-visual');
+      let ticking = false;
+      function update() {
+        ticking = false;
+        const rect = wrap.getBoundingClientRect();
+        const vh = window.innerHeight;
+        // 0 when the stage's top is near the bottom of the viewport,
+        // 1 once it has risen to roughly the upper-middle (fully read)
+        const p = (vh * 0.92 - rect.top) / (vh * 0.62);
+        setBloom(p);
+      }
+      function onScroll() {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
+
   </script>
 
 </body>
