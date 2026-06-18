@@ -1030,22 +1030,32 @@
     section { padding: 64px 0; }
 
     /* ── Hero ──────────────────────────────────────────────────── */
-    .hero { padding: 70px 0 48px; }
-    .hero-copy,
-    .hero-copy > *,
-    .hero-media { width: 100%; max-width: 100%; }
+    .hero { padding: 86px 0 48px; }
+
+    /* Переключаем grid → flex чтобы избежать конфликта колонок */
+    .hero-grid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0 !important;
+    }
+    .hero-copy { width: 100%; }
 
     /* Фото: первым, внутри контейнера, все 4 угла скруглены */
     .signature { display: none; }
-    .hero-media { order: -1; margin-bottom: 24px; }
-    .hero-visual {
+    .hero-media {
+      order: -1;
       width: 100%;
-      max-width: 100%;
+      margin-bottom: 24px;
+    }
+    .hero-visual {
+      width: 100% !important;
+      max-width: 100% !important;
       aspect-ratio: unset;
       height: auto;
       margin: 0;
       border-radius: 18px;
     }
+    [data-tilt] { transform: none !important; }
     .hero-visual img {
       position: static;
       width: 100%;
