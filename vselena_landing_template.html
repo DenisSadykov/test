@@ -1030,7 +1030,7 @@
     section { padding: 64px 0; }
 
     /* ── Hero ──────────────────────────────────────────────────── */
-    .hero { padding: 86px 0 48px; }
+    .hero { padding: 110px 0 48px; }
 
     /* Переключаем grid → flex чтобы избежать конфликта колонок */
     .hero-grid {
@@ -1045,7 +1045,7 @@
     .hero-media {
       order: -1;
       width: 100%;
-      margin-bottom: 24px;
+      margin-bottom: 10px;
     }
     .hero-visual {
       width: 100% !important;
@@ -1103,9 +1103,18 @@
     .stat + .stat { border-left: 1px solid var(--line-soft); }
 
     /* ── Автор / Монолог ────────────────────────────────────────── */
-    .author-section { padding-top: 100px; }
-    .mono-visual-wrap { top: 80px; width: 300px; transform: translate(-50%, 0); opacity: 0.28; }
-    .mono-visual { max-width: 240px; }
+    .author-section { padding-top: 80px; }
+    .mono { display: flex; flex-direction: column; }
+    .mono-visual-wrap {
+      position: static !important;
+      order: 2;
+      width: 100%;
+      transform: none !important;
+      opacity: 1;
+      pointer-events: none;
+      margin-top: 8px;
+    }
+    .mono-visual { max-width: 220px; margin: 0 auto; opacity: 0.55; }
     .mono-head { font-size: 28px; line-height: 1.12; }
     .cries { padding-left: 14px; font-size: 17px; line-height: 1.6; }
 
